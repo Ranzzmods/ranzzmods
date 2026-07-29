@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RZ MODS KEY SYSTEM</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
+url('https://wallpapercave.com/wp/wp5128415.jpg');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+color:white;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+.logo{
+text-align:center;
+margin-bottom:20px;
+}
+
+.logo h1{
+font-size:45px;
+text-shadow:0 0 20px #a020f0;
+}
+
+.card{
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,.15);
+border-radius:20px;
+padding:20px;
+margin-top:20px;
+}
+
+h2{
+margin-bottom:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+table th,
+table td{
+border:1px solid rgba(255,255,255,.15);
+padding:10px;
+text-align:center;
+}
+
+select,
+input{
+width:100%;
+padding:14px;
+margin-top:10px;
+border:none;
+border-radius:12px;
+font-size:16px;
+}
+
+button{
+margin-top:15px;
+padding:14px 25px;
+border:none;
+border-radius:50px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+color:white;
+background:linear-gradient(45deg,#7b2ff7,#f107a3);
+box-shadow:0 0 20px rgba(241,7,163,.6);
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.result{
+background:#000;
+padding:15px;
+border-radius:12px;
+margin-top:15px;
+word-break:break-all;
+}
+
+.copy-btn{
+background:linear-gradient(45deg,#00c853,#00e676);
+}
+
+.footer{
+text-align:center;
+margin-top:20px;
+opacity:.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+<h1>⚡ RZ MODS ⚡</h1>
+<p>Premium Anime Key System</p>
+</div>
+
+<div class="card">
+
+<h2>💰 DAFTAR HARGA</h2>
+
+<table>
+<tr>
+<th>Paket</th>
+<th>Masa Aktif</th>
+<th>Harga</th>
+</tr>
+
+<tr>
+<td>RZ Basic</td>
+<td>1 Hari</td>
+<td>Rp15.000</td>
+</tr>
+
+<tr>
+<td>RZ Bronze</td>
+<td>3 Hari</td>
+<td>Rp35.000</td>
+</tr>
+
+<tr>
+<td>RZ Silver</td>
+<td>7 Hari</td>
+<td>Rp75.000</td>
+</tr>
+
+<tr>
+<td>RZ Gold</td>
+<td>15 Hari</td>
+<td>Rp150.000</td>
+</tr>
+
+<tr>
+<td>RZ Platinum</td>
+<td>30 Hari</td>
+<td>Rp300.000</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h2>🔑 Generate Key</h2>
+
+<select id="durasi">
+
+<option value="86400000">
+🔥 1 Hari - Rp15.000
+</option>
+
+<option value="259200000">
+⚡ 3 Hari - Rp35.000
+</option>
+
+<option value="604800000">
+💎 7 Hari - Rp75.000
+</option>
+
+<option value="1296000000">
+👑 15 Hari - Rp150.000
+</option>
+
+<option value="2592000000">
+🚀 30 Hari - Rp300.000
+</option>
+
+</select>
+
+<button onclick="generateKey()">
+✨ Generate Key
+</button>
+
+<button class="copy-btn" onclick="copyKey()">
+📋 Copy Key
+</button>
+
+<div id="hasil" class="result">
+Belum ada key dibuat.
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>✅ Verifikasi Key</h2>
+
+<input
+type="text"
+id="cekKey"
+placeholder="Masukkan key">
+
+<button onclick="verifyKey()">
+🚀 Verifikasi
+</button>
+
+<div id="status" class="result">
+Menunggu verifikasi...
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 RZ MODS Premium System
+</div>
+
+</div>
+
+<script>
+
+let currentKey = "";
+
+function generateKey(){
+
+const prefix = [
+"WISM",
+"ANIME",
+"CYBER",
+"NEKO",
+"KITSU",
+"RZX"
+];
+
+const name =
+prefix[Math.floor(Math.random()*prefix.length)];
+
+const random =
+Math.random()
+.toString(36)
+.substring(2,6)
+.toUpperCase();
+
+const key =
+`RZ-${name}-${random}`;
+
+const expire =
+Date.now() +
+Number(
+document.getElementById("durasi").value
+);
+
+let keys =
+JSON.parse(
+localStorage.getItem("rzkeys")
+) || {};
+
+keys[key] = expire;
+
+localStorage.setItem(
+"rzkeys",
+JSON.stringify(keys)
+);
+
+currentKey = key;
+
+document.getElementById("hasil")
+.innerHTML =
+"<b>KEY:</b><br><br>" +
+key +
+"<br><br><b>Expired:</b><br>" +
+new Date(expire)
+.toLocaleString("id-ID");
+
+}
+
+function copyKey(){
+
+if(!currentKey){
+alert("Buat key terlebih dahulu!");
+return;
+}
+
+navigator.clipboard.writeText(currentKey);
+
+alert("Key berhasil disalin!");
+}
+
+function verifyKey(){
+
+const key =
+document
+.getElementById("cekKey")
+.value
+.trim()
+.toUpperCase();
+
+let keys =
+JSON.parse(
+localStorage.getItem("rzkeys")
+) || {};
+
+if(!keys[key]){
+
+document
+.getElementById("status")
+.innerHTML =
+"❌ Key tidak ditemukan";
+
+return;
+
+}
+
+if(Date.now() > keys[key]){
+
+document
+.getElementById("status")
+.innerHTML =
+"⛔ Key sudah expired";
+
+return;
+
+}
+
+document
+.getElementById("status")
+.innerHTML =
+"✅ Key valid";
+
+}
+
+</script>
+
+</body>
+</html>
