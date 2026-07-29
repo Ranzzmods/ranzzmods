@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generator Key</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+}
+
+.card{
+    background:#1e1e1e;
+    padding:20px;
+    border-radius:10px;
+    margin-top:20px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.generate{
+    background:#00c853;
+    color:white;
+}
+
+.verify{
+    background:#2962ff;
+    color:white;
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border-radius:5px;
+    border:none;
+}
+
+.key-box{
+    background:#000;
+    padding:15px;
+    border-radius:5px;
+    margin-top:15px;
+    word-break:break-all;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔑 Generator Key Otomatis</h1>
+
+<div class="card">
+
+<h2>Buat Key</h2>
+
+<select id="durasi">
+<option value="3600000">1 Jam</option>
+<option value="86400000">1 Hari</option>
+<option value="604800000">7 Hari</option>
+<option value="2592000000">30 Hari</option>
+</select>
+
+<button class="generate" onclick="generateKey()">
+Generate Key
+</button>
+
+<div id="hasil" class="key-box"></div>
+
+</div>
+
+<div class="card">
+
+<h2>Verifikasi Key</h2>
+
+<input type="text" id="cekKey" placeholder="Masukkan key">
+
+<button class="verify" onclick="verifyKey()">
+Verifikasi
+</button>
+
+<div id="status" class="key-box"></div>
+
+</div>
+
+</div>
+
+<script>
+
+function randomKey() {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let key = "";
+
+    for(let i=0;i<16;i++){
+        key += chars[Math.floor(Math.random()*chars.length)];
+
+        if((i+1)%4===0 && i<15){
+            key += "-";
+        }
+    }
+
+    return key;
+}
+
+function generateKey(){
+
+    const key = randomKey();
+
+    const duration =
+        Number(document.getElementById("durasi").value);
+
+    const expire =
+        Date.now() + duration;
+
+    let keys =
+        JSON.parse(localStorage.getItem("keys")) || {};
+
+    keys[key] = expire;
+
+    localStorage.setItem(
+        "keys",
+        JSON.stringify(keys)
+    );
+
+    const tanggal =
+        new Date(expire).toLocaleString("id-ID");
+
+    document.getElementById("hasil").innerHTML =
+        "<b>Key:</b> " + key +
+        "<br><br><b>Expired:</b> " + tanggal;
+}
+
+function verifyKey(){
+
+    const key =
+        document.getElementById("cekKey")
+        .value
+        .trim()
+        .toUpperCase();
+
+    let keys =
+        JSON.parse(localStorage.getItem("keys")) || {};
+
+    if(!keys[key]){
+        document.getElementById("status")
+        .innerHTML = "❌ Key tidak ditemukan";
+        return;
+    }
+
+    if(Date.now() > keys[key]){
+
+        delete keys[key];
+
+        localStorage.setItem(
+            "keys",
+            JSON.stringify(keys)
+        );
+
+        document.getElementById("status")
+        .innerHTML = "⛔ Key sudah expired";
+
+        return;
+    }
+
+    document.getElementById("status")
+    .innerHTML = "✅ Key valid";
+}
+
+</script>
+
+</body>
+</html>
