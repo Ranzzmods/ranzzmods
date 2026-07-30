@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RanzXiter Store</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#09000c;
+color:white;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:#120015;
+border-bottom:1px solid #ff0088;
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+color:#ff2ca8;
+text-shadow:0 0 15px #ff0088;
+}
+
+.menu{
+font-size:40px;
+color:#ff2ca8;
+cursor:pointer;
+}
+
+.banner{
+margin:20px;
+padding:25px;
+border-radius:20px;
+background:linear-gradient(135deg,#240021,#0d0010);
+border:1px solid #ff0088;
+text-align:center;
+}
+
+.banner h1{
+color:#ff2ca8;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+padding:15px;
+}
+
+.card{
+background:#120015;
+border:1px solid #ff0088;
+border-radius:20px;
+overflow:hidden;
+position:relative;
+box-shadow:0 0 15px rgba(255,0,136,.2);
+}
+
+.badge{
+position:absolute;
+top:10px;
+right:10px;
+background:#00d084;
+padding:5px 12px;
+border-radius:15px;
+font-size:11px;
+font-weight:bold;
+color:black;
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.card-content{
+padding:10px;
+text-align:center;
+}
+
+.card h3{
+font-size:16px;
+margin-bottom:8px;
+}
+
+.sold{
+color:#ff6ab5;
+margin-bottom:10px;
+}
+
+.btn{
+display:block;
+width:100%;
+padding:10px;
+margin-top:5px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.buy{
+background:#ff0088;
+color:white;
+}
+
+.download{
+background:#1c001f;
+color:white;
+border:1px solid #ff0088;
+}
+
+footer{
+text-align:center;
+padding:20px;
+margin-top:20px;
+border-top:1px solid #ff0088;
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">RanzXiter</div>
+<div class="menu">☰</div>
+</header>
+
+<div class="banner">
+<h1>PREMIUM FILE STORE</h1>
+<p>Selamat datang di dashboard produk</p>
+</div>
+
+<div class="products">
+
+<div class="card">
+<span class="badge">ANDROID</span>
+<img src="https://via.placeholder.com/300x300?text=PRODUCT+1">
+<div class="card-content">
+<h3>PRODUCT 1</h3>
+<div class="sold">🛒 Terjual 0</div>
+<button class="btn buy">BUY NOW</button>
+<button class="btn download">DOWNLOAD</button>
+</div>
+</div>
+
+<div class="card">
+<span class="badge">ANDROID</span>
+<img src="https://via.placeholder.com/300x300?text=PRODUCT+2">
+<div class="card-content">
+<h3>PRODUCT 2</h3>
+<div class="sold">🛒 Terjual 0</div>
+<button class="btn buy">BUY NOW</button>
+<button class="btn download">DOWNLOAD</button>
+</div>
+</div>
+
+<div class="card">
+<span class="badge">ANDROID</span>
+<img src="https://via.placeholder.com/300x300?text=PRODUCT+3">
+<div class="card-content">
+<h3>PRODUCT 3</h3>
+<div class="sold">🛒 Terjual 0</div>
+<button class="btn buy">BUY NOW</button>
+<button class="btn download">DOWNLOAD</button>
+</div>
+</div>
+
+<div class="card">
+<span class="badge">ANDROID</span>
+<img src="https://via.placeholder.com/300x300?text=PRODUCT+4">
+<div class="card-content">
+<h3>PRODUCT 4</h3>
+<div class="sold">🛒 Terjual 0</div>
+<button class="btn buy">BUY NOW</button>
+<button class="btn download">DOWNLOAD</button>
+</div>
+</div>
+
+<div class="card">
+<span class="badge">IOS</span>
+<img src="https://via.placeholder.com/300x300?text=PRODUCT+5">
+<div class="card-content">
+<h3>PRODUCT 5</h3>
+<div class="sold">🛒 Terjual 0</div>
+<button class="btn buy">BUY NOW</button>
+<button class="btn download">DOWNLOAD</button>
+</div>
+</div>
+
+<div class="card">
+<span class="badge">ANDROID</span>
+<img src="https://via.placeholder.com/300x300?text=PRODUCT+6">
+<div class="card-content">
+<h3>PRODUCT 6</h3>
+<div class="sold">🛒 Terjual 0</div>
+<button class="btn buy">BUY NOW</button>
+<button class="btn download">DOWNLOAD</button>
+</div>
+</div>
+
+</div>
+
+<footer>
+© 2026 RanzXiter Store
+</footer>
+
+</body>
+</html>
