@@ -1,8 +1,6 @@
-<div style="max-width:500px;margin:20px auto;padding:20px;background:#111827;border-radius:15px;color:white;text-align:center;border:2px solid #42a5ff;">
+<h2>⚡ RANZXITER KEY GENERATOR ⚡</h2>
 
-<h2>⚡ RanzXiter Key Generator ⚡</h2>
-
-<select id="hari" style="width:100%;padding:12px;border-radius:10px;margin-top:10px;">
+<select id="hari">
 <option value="1">1 Hari</option>
 <option value="3">3 Hari</option>
 <option value="7">7 Hari</option>
@@ -11,13 +9,40 @@
 <option value="30">30 Hari</option>
 </select>
 
-<button onclick="generateKey()" style="width:100%;padding:15px;margin-top:15px;background:#42a5ff;color:white;border:none;border-radius:10px;font-weight:bold;">
-GENERATE KEY
-</button>
+<button onclick="generateKey()">🔑 Generate Key</button>
 
-<div style="margin-top:20px;">
-<p><b>KEY:</b></p>
-<h3 id="key">-</h3>
+<div style="margin-top:15px">
+<p><b>KEY:</b> <span id="key">-</span></p>
+<p><b>STATUS:</b> <span id="status">🟢 Active</span></p>
+<p><b>EXPIRED:</b> <span id="expired">-</span></p>
+</div>
 
-<p><b>STATUS:</b></p>
-<h3 id="status
+<h3>📜 Riwayat Key</h3>
+<div id="history"></div>
+
+<script>
+function generateKey(){
+
+const hari = parseInt(document.getElementById("hari").value);
+
+const angka = Math.floor(10000 + Math.random() * 90000);
+const key = "RH-" + angka;
+
+const tanggal = new Date();
+tanggal.setDate(tanggal.getDate() + hari);
+
+const expired = tanggal.toLocaleDateString("id-ID");
+
+document.getElementById("key").textContent = key;
+document.getElementById("expired").textContent = expired;
+
+const item = document.createElement("div");
+item.innerHTML = `
+<b>${key}</b> | ${expired} | 🟢 Active
+<button onclick="this.parentElement.remove()">❌ Hapus</button>
+`;
+item.style.margin = "5px 0";
+
+document.getElementById("history").prepend(item);
+}
+</script>
