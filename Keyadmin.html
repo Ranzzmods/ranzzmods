@@ -1,28 +1,75 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RANZXITER - ADMIN KEY</title>
-<style>
-*{margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif;}
-body{background:#050816; color:#fff; min-height:100vh; padding:20px 15px;}
-.container{max-width:480px; margin:0 auto;}
-.header{text-align:center; margin:25px 0;}
-.header h1{font-size:38px; background:linear-gradient(90deg,#ff00ff,#00ffff); -webkit-background-clip:text; color:transparent;}
-.card{background:rgba(255,255,255,0.08); border-radius:16px; padding:20px; margin-bottom:20px;}
-select, input{width:100%; padding:12px; border-radius:10px; border:none; margin-bottom:15px; font-size:15px;}
-button{width:100%; padding:12px; border:none; border-radius:10px; font-weight:bold; margin:5px 0; cursor:pointer;}
-.btn-generate{background:linear-gradient(135deg,#ff00cc,#9900ff); color:#fff;}
-.btn-copy{background:linear-gradient(135deg,#00cc66,#00ff88); color:#fff;}
-.btn-verif{background:linear-gradient(135deg,#ff00cc,#9900ff); color:#fff;}
-.hasil{padding:15px; background:rgba(0,0,0,0.6); border-radius:10px; color:#0ff; margin:10px 0; word-break:break-all;}
-.item-key{background:rgba(0,0,0,0.5); border-radius:10px; padding:12px; margin:10px 0; border-left:4px solid #22c55e;}
-.nonaktif{border-left-color:#ef4444; opacity:0.8;}
-.aksi{display:flex; gap:8px; margin-top:8px;}
-.aksi button{flex:1; padding:8px; font-size:13px;}
-footer{text-align:center; margin-top:20px; opacity:0.7; font-size:13px;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RANZXITER - ADMIN KEY</title>
+    <style>
+        *{margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif;}
+        body{
+            background: linear-gradient(180deg, #0f2040 0%, #050816 50%, #050816 100%);
+            color:#fff; min-height:100vh; padding:20px 15px;
+        }
+        .container{max-width:480px; margin:0 auto;}
+        .header{text-align:center; margin:30px 0 25px;}
+        .header h1{
+            font-size:48px; font-weight:bold;
+            background:linear-gradient(90deg,#ff00ff,#00ccff);
+            -webkit-background-clip:text; color:transparent;
+            margin-bottom:8px;
+        }
+        .header p{font-size:18px; opacity:0.9; letter-spacing:1px;}
+
+        .card{
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius:20px; padding:25px 20px; margin-bottom:25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .card h2{
+            font-size:26px; margin-bottom:20px;
+            display:flex; align-items:center; gap:8px;
+        }
+
+        select{
+            width:100%; padding:16px 18px; border-radius:14px; border:none;
+            font-size:17px; margin-bottom:20px; background:#f0f4f8; color:#111;
+        }
+
+        .btn-row{display:flex; gap:12px; margin-bottom:20px;}
+        button{
+            flex:1; padding:15px 10px; border:none; border-radius:14px;
+            font-size:17px; font-weight:bold; cursor:pointer;
+        }
+        .btn-generate{background:linear-gradient(90deg,#ff00cc,#9900ff); color:#fff;}
+        .btn-copy{background:linear-gradient(90deg,#00ee77,#00ff88); color:#fff;}
+        .btn-verif{background:linear-gradient(90deg,#ff00cc,#9900ff); color:#fff; width:100%;}
+        .btn-salin{background:#f8fafc; color:#111;}
+        .btn-mati{background:#ef4444; color:#fff;}
+        .btn-hapus{background:#f59e0b; color:#fff;}
+
+        .hasil-key{
+            width:100%; padding:16px; background:rgba(0,0,0,0.6);
+            border-radius:12px; font-size:17px; word-break:break-all;
+            color:#00e5ff; font-weight:500;
+        }
+
+        .item-key{
+            background:rgba(0,0,0,0.55); border-radius:14px; padding:18px; margin-bottom:12px;
+            border-left:4px solid #22c55e;
+        }
+        .item-key.nonaktif{border-left-color:#ef4444; opacity:0.8;}
+        .info-line{margin:8px 0; font-size:15px; line-height:1.7;}
+        .info-line span{color:#00e5ff; font-weight:bold;}
+        .aksi-row{display:flex; gap:10px; margin-top:14px;}
+        .aksi-row button{padding:10px 8px; font-size:14px; min-width:auto; flex:none;}
+
+        input{
+            width:100%; padding:15px 18px; border-radius:14px; border:2px solid #fff;
+            font-size:17px; margin-bottom:18px; background:#fff; color:#111;
+        }
+        .cek-hasil{margin-top:10px; font-size:17px; color:#00ff88;}
+    </style>
 </head>
 <body>
 <div class="container">
@@ -31,86 +78,116 @@ footer{text-align:center; margin-top:20px; opacity:0.7; font-size:13px;}
         <p>ADMIN KEY SYSTEM 🔐</p>
     </div>
 
+    <!-- Buat Key Baru -->
     <div class="card">
+        <h2>🔑 Buat Key Baru</h2>
         <select id="durasi">
-            <option value="1">1 Hari - Rp15.000</option>
-            <option value="3">3 Hari - Rp35.000</option>
-            <option value="7">7 Hari - Rp60.000</option>
-            <option value="10">15 Hari - Rp130.000</option>
-            <option value="21">21 Hari - Rp120.000</option>
-            <option value="30">30 Hari - Rp190.000</option>
+            <option value="1-15000">⚡ 1 Hari - Rp15.000</option>
+            <option value="3-35000">⚡ 3 Hari - Rp35.000</option>
+            <option value="7-60000">⚡ 7 Hari - Rp60.000</option>
+            <option value="10-130000">⚡ 10 Hari - Rp130.000</option>
+            <option value="21-120000">⚡ 21 Hari - Rp120.000</option>
+            <option value="30-190000">⚡ 30 Hari - Rp190.000</option>
         </select>
-        <button class="btn-generate" onclick="buatKey()">✨ Generate Key</button>
-        <button class="btn-copy" onclick="salin()">📋 Copy Key</button>
-        <div class="hasil" id="hasil">Belum ada key</div>
+
+        <div class="btn-row">
+            <button class="btn-generate" onclick="buatKey()">✨ Generate Key</button>
+            <button class="btn-copy" onclick="salin()">📋 Copy Key</button>
+        </div>
+
+        <div class="hasil-key" id="hasilKey">RZXR-21-120000-SSD29XZU</div>
     </div>
 
+    <!-- Daftar Key & Kontrol -->
     <div class="card">
-        <h3>📋 Daftar Key</h3>
-        <div id="daftar"><div style="text-align:center; opacity:0.7; padding:15px;">Kosong</div></div>
+        <h2>📋 Daftar Key & Kontrol</h2>
+        <div id="daftar">
+            <div class="item-key">
+                <div class="info-line">📌 Key: <span>RZXR-21-120000-SSD29XZU</span></div>
+                <div class="info-line">⏳ Durasi: 21 Hari | 💸 Rp120000</div>
+                <div class="info-line">📅 Expired: 23/8/2026, 16.19.16</div>
+                <div class="info-line">🟢 Status: <span>AKTIF</span></div>
+                <div class="aksi-row">
+                    <button class="btn-salin">Salin</button>
+                    <button class="btn-mati">Matikan</button>
+                    <button class="btn-hapus">Hapus</button>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Cek Key -->
     <div class="card">
-        <input type="text" id="inputKey" placeholder="Masukkan Key">
+        <h2>✅ Cek Key</h2>
+        <input type="text" id="inputKey" placeholder="Masukkan key untuk verifikasi">
         <button class="btn-verif" onclick="cek()">🚀 Verifikasi</button>
-        <div class="hasil" id="cekHasil">Menunggu...</div>
+        <div class="cek-hasil" id="cekHasil">✅ Key VALID & AKTIF!</div>
     </div>
-
-    <footer>© 2026 RZ MODS</footer>
 </div>
 
 <script>
 let keyTerakhir = "";
 const keyTetap = ["RH-8398", "RH-7883", "RH-7382", "RH-7839"];
-let daftar = JSON.parse(localStorage.getItem('daftarKey')) || [];
+let daftar = JSON.parse(localStorage.getItem('daftarKeyRZ')) || [];
 tampil();
 
-// Fungsi buat kode acak unik setiap saat
-function kodeAcak(panjang = 6){
-    const huruf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    let hasil = "";
-    for(let i=0; i < panjang; i++){
-        hasil += huruf[Math.floor(Math.random() * huruf.length)];
-    }
-    return hasil;
+// Kode acak unik tiap kali
+function kodeAcak(panjang = 8){
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let res = "";
+    for(let i=0; i < panjang; i++) res += chars[Math.floor(Math.random()*chars.length)];
+    return res;
 }
 
 function buatKey(){
-    const hari = document.getElementById("durasi").value;
-    const acak = kodeAcak(6); // Kode acak pasti beda
+    const [hari, harga] = document.getElementById("durasi").value.split("-");
+    const acak = kodeAcak(8);
     const exp = new Date(Date.now() + hari*86400000).toLocaleString('id-ID');
+    
     keyTerakhir = `RH-${hari}-${acak}`;
-    document.getElementById("hasil").innerText = keyTerakhir;
-    daftar.unshift({kode:keyTerakhir, exp:exp, aktif:true});
-    simpan(); tampil(); alert("✅ Key dibuat!");
+    document.getElementById("hasilKey").innerText = keyTerakhir;
+
+    daftar.unshift({
+        kode: keyTerakhir, dur: `${hari} Hari`, hrg: `Rp${harga}`, exp: exp, aktif: true
+    });
+    tampil(); alert("✅ Key dibuat!");
 }
-function salin(){if(!keyTerakhir)return alert("❌ Buat dulu!"); navigator.clipboard.writeText(keyTerakhir).then(()=>alert("✅ Disalin!"));}
+
+function salin(){
+    if(!keyTerakhir) return alert("❌ Buat dulu!");
+    navigator.clipboard.writeText(keyTerakhir).then(()=>alert("✅ Disalin!"));
+}
+
 function tampil(){
     const wadah = document.getElementById("daftar");
-    if(!daftar.length) return wadah.innerHTML = `<div style="text-align:center; opacity:0.7; padding:15px;">Kosong</div>`;
+    if(!daftar.length) return wadah.innerHTML = `<div style="text-align:center; opacity:0.7; padding:20px;">Belum ada key</div>`;
     wadah.innerHTML = daftar.map((x,i)=>`
     <div class="item-key ${x.aktif?'':'nonaktif'}">
-        <div><b>Key:</b> ${x.kode}</div>
-        <div><b>Exp:</b> ${x.exp}</div>
-        <div><b>Status:</b> ${x.aktif?'✅ AKTIF':'❌ NONAKTIF'}</div>
-        <div class="aksi">
-            <button onclick="navigator.clipboard.writeText('${x.kode}').then(()=>alert('✅ OK'))">Salin</button>
-            <button onclick="toggle(${i})">${x.aktif?'Matikan':'Nyalakan'}</button>
-            <button onclick="hapus(${i})">Hapus</button>
+        <div class="info-line">📌 Key: <span>${x.kode}</span></div>
+        <div class="info-line">⏳ Durasi: ${x.dur} | 💸 ${x.hrg}</div>
+        <div class="info-line">📅 Expired: ${x.exp}</div>
+        <div class="info-line">🟢 Status: <span>${x.aktif?'AKTIF':'NONAKTIF'}</span></div>
+        <div class="aksi-row">
+            <button class="btn-salin" onclick="navigator.clipboard.writeText('${x.kode}').then(()=>alert('✅ Disalin!'))">Salin</button>
+            <button class="btn-mati" onclick="toggle(${i})">${x.aktif?'Matikan':'Nyalakan'}</button>
+            <button class="btn-hapus" onclick="hapus(${i})">Hapus</button>
         </div>
     </div>`).join('');
 }
+
 function toggle(i){daftar[i].aktif = !daftar[i].aktif; simpan(); tampil();}
-function hapus(i){if(confirm("Yakin?")){daftar.splice(i,1); simpan(); tampil();}}
-function simpan(){localStorage.setItem('daftarKey', JSON.stringify(daftar));}
+function hapus(i){if(confirm("Yakin hapus?")){daftar.splice(i,1); simpan(); tampil();}}
+function simpan(){localStorage.setItem('daftarKeyRZ', JSON.stringify(daftar));}
+
 function cek(){
     const val = document.getElementById("inputKey").value.trim();
     const box = document.getElementById("cekHasil");
-    if(!val) return box.innerText = "❌ Masukkan key!";
+    if(!val) return box.innerHTML = `<span style="color:#ff4444;">❌ Masukkan key dulu!</span>`;
+    
     const ok = daftar.some(x=>x.kode===val && x.aktif) || keyTetap.includes(val);
-    box.innerText = ok ? "✅ VALID & AKTIF" : "❌ TIDAK VALID";
-    box.style.color = ok ? "#0f0" : "#f00";
+    box.innerHTML = ok ? `<span style="color:#00ff88;">✅ Key VALID & AKTIF!</span>` : `<span style="color:#ff4444;">❌ Key TIDAK VALID!</span>`;
 }
 </script>
 </body>
 </html>
+
