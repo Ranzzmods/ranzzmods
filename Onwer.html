@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RANZXITER - ADMIN KEY</title>
+    <style>
+        *{margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Roboto, Arial, sans-serif;}
+
+        /* === BACKGROUND ANIMASI MENYALA & HD === */
+        body{
+            margin:0; min-height:100vh;
+            background: linear-gradient(45deg, #050520, #1a0540, #052040, #050520);
+            background-size:400% 400%;
+            animation: gradasiGerak 12s ease infinite;
+            color:#fff;
+        }
+        @keyframes gradasiGerak{
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
+        }
+
+        /* === HALAMAN LOGIN - TAMPILAN MENCLOK & HD === */
+        .login-page{
+            display:flex; align-items:center; justify-content:center;
+            min-height:100vh; padding:20px;
+            position:relative;
+        }
+        .login-box{
+            width:100%; max-width:440px;
+            background: rgba(10, 15, 40, 0.92);
+            backdrop-filter: blur(18px);
+            border-radius:28px; padding:40px 30px;
+            border: 2px solid #00ccff;
+            box-shadow: 0 0 50px #00ccff80, 0 0 100px #ff00ff40;
+            position:relative; overflow:hidden;
+        }
+        .login-box::before{
+            content:""; position:absolute; top:-50%; left:-50%;
+            width:200%; height:200%;
+            background: conic-gradient(transparent, #00ccff, transparent, #ff00ff, transparent);
+            animation: putarBingkai 4s linear infinite;
+            animation-delay: -2s;
+            opacity:0.4;
+        }
+        @keyframes putarBingkai{
+            100%{transform:rotate(360deg);}
+        }
+        .login-box > *{position:relative; z-index:2;}
+
+        .login-title{
+            text-align:center; font-size:36px; font-weight:900;
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
+            -webkit-background-clip: text; color:transparent;
+            margin-bottom:35px; text-shadow:0 0 30px #00ffff60;
+        }
+        .login-title .cek{color:#00ff88; text-shadow:0 0 15px #00ff88;}
+
+        .form-group{margin-bottom:22px;}
+        .form-group label{
+            display:block; color:#00ffff; margin-bottom:10px; font-weight:700; font-size:16px;
+            text-shadow:0 0 10px #00ffff80;
+        }
+        .form-group input{
+            width:100%; padding:16px 20px; border-radius:16px; border: 2px solid #00ffff60;
+            background: rgba(0, 20, 60, 0.8); color:#fff; font-size:17px; font-weight:500;
+            outline:none; transition:0.3s ease;
+            box-shadow: inset 0 0 15px #00ffff30;
+        }
+        .form-group input:focus{
+            border-color:#ff00ff; box-shadow: 0 0 20px #ff00ff60, inset 0 0 15px #ff00ff30;
+            background: rgba(20, 0, 60, 0.8);
+        }
+        .form-group input::placeholder{color:#ffffff70;}
+
+        .btn-login{
+            width:100%; padding:16px; border:none; border-radius:16px;
+            background: linear-gradient(90deg, #00ccff, #ff00ff, #ff00cc);
+            background-size:200% 200%;
+            animation: gerakBtn 3s ease infinite;
+            color:#fff; font-size:20px; font-weight:900; cursor:pointer;
+            transition:0.2s; margin-top:15px;
+            box-shadow: 0 0 30px #ff00ff80;
+            letter-spacing:1px;
+        }
+        @keyframes gerakBtn{
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
+        }
+        .btn-login:active{transform:scale(0.96); box-shadow:0 0 50px #ff00ff;}
+
+        .owner-text{
+            text-align:center; margin-top:30px; font-size:22px; font-weight:900;
+            background: linear-gradient(90deg, #ffcc00, #ff00ff, #00ffff);
+            -webkit-background-clip: text; color:transparent;
+            text-shadow:0 0 20px #ffcc0080;
+            letter-spacing:2px;
+        }
+        .error-msg{
+            color:#ff3366; text-align:center; margin-top:12px; display:none; font-weight:700;
+            text-shadow:0 0 10px #ff3366;
+        }
+
+        /* === HALAMAN UTAMA GENERATOR KEY === */
+        .main-page{display:none; padding:20px 15px; min-height:100vh;}
+        .container{max-width:480px; margin:0 auto; position:relative; z-index:1;}
+        .btn-keluar{
+            position:fixed; top:15px; right:15px; background: linear-gradient(90deg, #ff2222, #ff6600);
+            color:#fff; border:none; padding:10px 18px; border-radius:12px; cursor:pointer;
+            font-weight:800; font-size:15px; box-shadow:0 0 20px #ff222280;
+            z-index:999;
+        }
+        .btn-keluar:active{transform:scale(0.95);}
+
+        .header{text-align:center; margin:30px 0 25px;}
+        .header h1{
+            font-size:52px; font-weight:900;
+            background: linear-gradient(90deg, #ff00ff, #00ffff, #ffff00);
+            -webkit-background-clip: text; color:transparent;
+            margin-bottom:8px; text-shadow:0 0 40px #ff00ff60;
+        }
+        .header p{font-size:20px; font-weight:600; color:#00ffff; letter-spacing:1px; text-shadow:0 0 15px #00ffff80;}
+
+        .card{
+            background: rgba(10, 15, 40, 0.85);
+            backdrop-filter: blur(15px);
+            border-radius:24px; padding:28px 22px; margin-bottom:28px;
+            border: 2px solid #00ffff60;
+            box-shadow: 0 0 40px #00ffff40;
+            transition:0.3s;
+        }
+        .card:hover{border-color:#ff00ff; box-shadow:0 0 60px #ff00ff50;}
+        .card h2{
+            font-size:28px; margin-bottom:22px;
+            display:flex; align-items:center; gap:8px; font-weight:800;
+            color:#ffff00; text-shadow:0 0 15px #ffff0080;
+        }
+
+        select{
+            width:100%; padding:16px 18px; border-radius:16px; border: 2px solid #00ffff60;
+            background: rgba(0, 20, 60, 0.9); color:#fff; font-size:17px; font-weight:600;
+            outline:none; transition:0.3s; cursor:pointer;
+        }
+        select:focus{border-color:#ff00ff; box-shadow:0 0 20px #ff00ff60;}
+
+        .btn-row{display:flex; gap:14px; margin-bottom:22px;}
+        button{
+            flex:1; padding:16px 10px; border:none; border-radius:16px;
+            font-size:17px; font-weight:800; cursor:pointer; transition:0.2s;
+            letter-spacing:0.5px;
+        }
+        button:active{transform:scale(0.96);}
+        .btn-generate{
+            background: linear-gradient(90deg, #ff00cc, #9900ff); color:#fff;
+            box-shadow:0 0 25px #ff00cc80;
+        }
+        .btn-copy{
+            background: linear-gradient(90deg, #00ee77, #00ffcc); color:#000;
+            box-shadow:0 0 25px #00ee7780;
+        }
+        .btn-copy-all{
+            background: linear-gradient(90deg, #ffcc00, #ff9900); color:#000; width:100%; margin-top:12px;
+            box-shadow:0 0 25px #ffcc0080;
+        }
+        .btn-verif{
+            background: linear-gradient(90deg, #ff00cc, #9900ff); color:#fff; width:100%;
+            box-shadow:0 0 25px #ff00cc80;
+        }
+        .btn-salin{background:#f8fafc; color:#111; font-weight:700;}
+        .btn-mati{background:#ef4444; color:#fff; font-weight:700; box-shadow:0 0 15px #ef444480;}
+        .btn-hapus{background:#f59e0b; color:#fff; font-weight:700; box-shadow:0 0 15px #f59e0b80;}
+
+        .hasil-key{
+            width:100%; padding:18px; background: rgba(0,0,0,0.7);
+            border-radius:16px; font-size:19px; font-weight:700; word-break:break-all;
+            color:#00ffff; margin-bottom:18px;
+            border: 2px solid #00ffff80;
+            box-shadow: inset 0 0 20px #00ffff40;
+        }
+        .proses{color:#ffff00; font-weight:900; animation: kedip 1s infinite;}
+        @keyframes kedip{50%{opacity:0.3;}}
+
+        .item-key{
+            background: rgba(0,0,0,0.75); border-radius:16px; padding:20px; margin-bottom:14px;
+            border-left:5px solid #00ff88;
+            box-shadow:0 0 25px #00ff8840;
+        }
+        .item-key.nonaktif{border-left-color:#ff4444; box-shadow:0 0 25px #ff444440;}
+        .info-line{margin:10px 0; font-size:16px; line-height:1.8; font-weight:600;}
+        .info-line span{color:#00ffff; font-weight:800; text-shadow:0 0 10px #00ffff80;}
+        .aksi-row{display:flex; gap:12px; margin-top:16px;}
+        .aksi-row button{padding:12px 15px; font-size:15px; min-width:auto; flex:none;}
+
+        input{
+            width:100%; padding:16px 20px; border-radius:16px; border: 2px solid #00ffff60;
+            font-size:17px; margin-bottom:18px; background: rgba(0,20,60,0.9); color:#fff; font-weight:600;
+            outline:none; transition:0.3s;
+        }
+        input:focus{border-color:#ff00ff; box-shadow:0 0 20px #ff00ff60;}
+        input::placeholder{color:#ffffff70;}
+        .cek-hasil{margin-top:12px; font-size:18px; font-weight:800; text-align:center;}
+    </style>
+</head>
+<body>
+
+<!-- === HALAMAN LOGIN === -->
+<div class="login-page" id="halamanLogin">
+    <div class="login-box">
+        <h1 class="login-title">RanzXiter Admin Key <span class="cek">✅</span></h1>
+
+        <div class="form-group">
+            <label>USERNAME</label>
+            <input type="text" id="user" placeholder="Masukkan username">
+        </div>
+
+        <div class="form-group">
+            <label>PASSWORD</label>
+            <input type="password" id="pass" placeholder="Masukkan password">
+        </div>
+
+        <div class="error-msg" id="pesanSalah">❌ Username atau Password salah!</div>
+
+        <button class="btn-login" onclick="cekLogin()">MASUK SEKARANG</button>
+
+        <!-- SUDAH DIGANTI JADI OWNER VIP -->
+        <div class="owner-text">👑 OWNER VIP 👑</div>
+    </div>
+</div>
+
+<!-- === HALAMAN UTAMA GENERATOR KEY === -->
+<div class="main-page" id="halamanUtama">
+    <div class="container">
+        <button class="btn-keluar" onclick="keluar()">✕ KELUAR</button>
+        <div class="header">
+            <h1>⚡ RANZXITER ⚡</h1>
+            <p>ADMIN KEY SYSTEM 🔐</p>
+        </div>
+
+        <div class="card">
+            <h2>🔑 Buat Key Baru</h2>
+            <select id="durasi">
+                <option value="1-15000">📅 1 Hari - Rp15.000</option>
+                <option value="3-35000">📅 3 Hari - Rp35.000</option>
+                <option value="7-60000">📅 7 Hari - Rp60.000</option>
+                <option value="10-130000">📅 10 Hari - Rp130.000</option>
+                <option value="21-120000">📅 21 Hari - Rp120.000</option>
+                <option value="30-190000">📅 30 Hari - Rp190.000</option>
+            </select>
+
+            <div class="hasil-key" id="hasilKey">Belum ada key</div>
+
+            <select id="mod">
+                <option value="">🎮 Pilih Menu Mod</option>
+            </select>
+
+            <div class="btn-row">
+                <button class="btn-generate" onclick="buatKey()">✨ Generate Key</button>
+                <button class="btn-copy" onclick="salin()">📋 Copy Key</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📋 Daftar Key & Kontrol</h2>
+            <div id="daftar">
+                <div style="text-align:center; opacity:0.7; padding:25px; font-size:17px; font-weight:600;">Belum Generator Key</div>
+            </div>
+            <button class="btn-copy-all" onclick="salinSemua()">📋 SALIN SEMUA KEY</button>
+        </div>
+
+        <div class="card">
+            <h2>✅ Cek Key</h2>
+            <input type="text" id="inputKey" placeholder="Masukkan key untuk verifikasi">
+            <button class="btn-verif" onclick="cek()">🚀 Verifikasi</button>
+            <div class="cek-hasil" id="cekHasil"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// === FUNGSI LOGIN ===
+function cekLogin(){
+    const user = document.getElementById("user").value.trim();
+    const pass = document.getElementById("pass").value.trim();
+    const pesan = document.getElementById("pesanSalah");
+
+    if(user === "Admin123" && pass === "admin12345"){
+        document.getElementById("halamanLogin").style.display = "none";
+        document.getElementById("halamanUtama").style.display = "block";
+    }else{
+        pesan.style.display = "block";
+        setTimeout(()=> pesan.style.display = "none", 3000);
+    }
+}
+
+function keluar(){
+    document.getElementById("halamanUtama").style.display = "none";
+    document.getElementById("halamanLogin").style.display = "flex";
+    document.getElementById("user").value = "";
+    document.getElementById("pass").value = "";
+}
+
+// === FUNGSI GENERATOR KEY ===
+let keyTerakhir = "";
+const keyTetap = ["RH-8398", "RH-7883", "RH-7382", "RH-7839"];
+let daftar = JSON.parse(localStorage.getItem('daftarKeyRZ')) || [];
+
+// HANYA ANGKA 4 DIGIT ACAK
+function kodeAcak(){
+    const angka = "0123456789";
+    let hasil = "";
+    for(let i=0; i<4; i++) hasil += angka[Math.floor(Math.random()*10)];
+    return hasil;
+}
+
+async function buatKey(){
+    const [hari, harga] = document.getElementById("durasi").value.split("-");
+    const tampil = document.getElementById("hasilKey");
+    tampil.innerHTML = `<span class="proses">⏳ Key Sedang Dibuat...</span>`;
+    await new Promise(t => setTimeout(t, 1200));
+
+    const acak = kodeAcak();
+    keyTerakhir = `RH-${acak}`;
+    const exp = new Date(Date.now() + hari*86400000).toLocaleString('id-ID');
+    tampil.innerText = keyTerakhir;
+
+    daftar.unshift({kode: keyTerakhir, dur: `${hari} Hari`, hrg: `Rp${harga}`, mod: "-", exp: exp, aktif: true});
+    tampil(); alert("✅ Key berhasil dibuat!");
+}
+
+function salin(){
+    if(!keyTerakhir) return alert("❌ Buat key dulu!");
+    navigator.clipboard.writeText(keyTerakhir).then(()=>alert("✅ Key disalin!"));
+}
+
+function salinSemua(){
+    if(daftar.length === 0) return alert("❌ Belum ada key yang dibuat!");
+    let teks = "=== DAFTAR KEY RANZXITER ===\n\n";
+    daftar.forEach((x, i)=>{
+        teks += `${i+1}. Key: ${x.kode}\n   Durasi: ${x.dur} | ${x.hrg}\n   Exp: ${x.exp}\n   Status: ${x.aktif?'✅ AKTIF':'❌ NONAKTIF'}\n\n`;
+    });
+    navigator.clipboard.writeText(teks).then(()=>alert("✅ Semua key disalin!"));
+}
+
+function tampil(){
+    const wadah = document.getElementById("daftar");
+    if(!daftar.length) return wadah.innerHTML = `<div style="text-align:center; opacity:0.7; padding:25px; font-size:17px; font-weight:600;">Belum Generator Key</div>`;
+    wadah.innerHTML = daftar.map((x,i)=>`
+    <div class="item-key ${x.aktif?'':'nonaktif'}">
+        <div class="info-line">📌 Key: <span>${x.kode}</span></div>
+        <div class="info-line">⏳ Durasi: ${x.dur} | 💸 ${x.hrg}</div>
+        <div class="info-line">📅 Expired: ${x.exp}</div>
+        <div class="info-line">🟢 Status: <span>${x.aktif?'AKTIF':'NONAKTIF'}</span></div>
+        <div class="aksi-row">
+            <button class="btn-salin" onclick="navigator.clipboard.writeText('${x.kode}')">Salin</button>
+            <button class="btn-mati" onclick="toggle(${i})">${x.aktif?'Matikan':'Nyalakan'}</button>
+            <button class="btn-hapus" onclick="hapus(${i})">Hapus</button>
+        </div>
+    </div>`).join('');
+}
+
+function toggle(i){daftar[i].aktif = !daftar[i].aktif; simpan(); tampil();}
+function hapus(i){if(confirm("Yakin hapus?")){daftar.splice(i,1); simpan(); tampil();}}
+function simpan(){localStorage.setItem('daftarKeyRZ', JSON.stringify(daftar));}
+
+function cek(){
+    const val = document.getElementById("inputKey").value.trim();
+    const box = document.getElementById("cekHasil");
+    if(!val) return box.innerHTML = `<span style="color:#ff4444;">❌ Masukkan key dulu!</span>`;
+    const ok = daftar.some(x=>x.kode===val && x.aktif) || keyTetap.includes(val);
+    box.innerHTML = ok ? `<span style="color:#00ff88;">✅ Key VALID & AKTIF!</span>` : `<span style="color:#ff4444;">❌ Key TIDAK VALID!</span>`;
+}
+</script>
+</body>
+</html>
