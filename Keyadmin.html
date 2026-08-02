@@ -1,48 +1,116 @@
-<h2>⚡ RANZXITER KEY GENERATOR ⚡</h2>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RANZXITER - ADMIN KEY</title>
+<style>
+*{margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif;}
+body{background:#050816; color:#fff; min-height:100vh; padding:20px 15px;}
+.container{max-width:480px; margin:0 auto;}
+.header{text-align:center; margin:25px 0;}
+.header h1{font-size:38px; background:linear-gradient(90deg,#ff00ff,#00ffff); -webkit-background-clip:text; color:transparent;}
+.card{background:rgba(255,255,255,0.08); border-radius:16px; padding:20px; margin-bottom:20px;}
+select, input{width:100%; padding:12px; border-radius:10px; border:none; margin-bottom:15px; font-size:15px;}
+button{width:100%; padding:12px; border:none; border-radius:10px; font-weight:bold; margin:5px 0; cursor:pointer;}
+.btn-generate{background:linear-gradient(135deg,#ff00cc,#9900ff); color:#fff;}
+.btn-copy{background:linear-gradient(135deg,#00cc66,#00ff88); color:#fff;}
+.btn-verif{background:linear-gradient(135deg,#ff00cc,#9900ff); color:#fff;}
+.hasil{padding:15px; background:rgba(0,0,0,0.6); border-radius:10px; color:#0ff; margin:10px 0; word-break:break-all;}
+.item-key{background:rgba(0,0,0,0.5); border-radius:10px; padding:12px; margin:10px 0; border-left:4px solid #22c55e;}
+.nonaktif{border-left-color:#ef4444; opacity:0.8;}
+.aksi{display:flex; gap:8px; margin-top:8px;}
+.aksi button{flex:1; padding:8px; font-size:13px;}
+footer{text-align:center; margin-top:20px; opacity:0.7; font-size:13px;}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>⚡ RANZXITER ⚡</h1>
+        <p>ADMIN KEY SYSTEM 🔐</p>
+    </div>
 
-<select id="hari">
-<option value="1">1 Hari</option>
-<option value="3">3 Hari</option>
-<option value="7">7 Hari</option>
-<option value="15">15 Hari</option>
-<option value="21">21 Hari</option>
-<option value="30">30 Hari</option>
-</select>
+    <div class="card">
+        <select id="durasi">
+            <option value="1">1 Hari - Rp15.000</option>
+            <option value="3">3 Hari - Rp35.000</option>
+            <option value="7">7 Hari - Rp60.000</option>
+            <option value="10">10 Hari - Rp130.000</option>
+            <option value="21">21 Hari - Rp120.000</option>
+            <option value="30">30 Hari - Rp190.000</option>
+        </select>
+        <button class="btn-generate" onclick="buatKey()">✨ Generate Key</button>
+        <button class="btn-copy" onclick="salin()">📋 Copy Key</button>
+        <div class="hasil" id="hasil">Belum ada key</div>
+    </div>
 
-<button onclick="generateKey()">🔑 Generate Key</button>
+    <div class="card">
+        <h3>📋 Daftar Key</h3>
+        <div id="daftar"><div style="text-align:center; opacity:0.7; padding:15px;">Kosong</div></div>
+    </div>
 
-<div style="margin-top:15px">
-<p><b>KEY:</b> <span id="key">-</span></p>
-<p><b>STATUS:</b> <span id="status">🟢 Active</span></p>
-<p><b>EXPIRED:</b> <span id="expired">-</span></p>
+    <div class="card">
+        <input type="text" id="inputKey" placeholder="Masukkan Key">
+        <button class="btn-verif" onclick="cek()">🚀 Verifikasi</button>
+        <div class="hasil" id="cekHasil">Menunggu...</div>
+    </div>
+
+    <footer>© 2026 RZ MODS</footer>
 </div>
 
-<h3>📜 Riwayat Key</h3>
-<div id="history"></div>
-
 <script>
-function generateKey(){
+let keyTerakhir = "";
+const keyTetap = ["RH-8398", "RH-7883", "RH-7382", "RH-7839"];
+let daftar = JSON.parse(localStorage.getItem('daftarKey')) || [];
+tampil();
 
-const hari = parseInt(document.getElementById("hari").value);
+// Fungsi buat kode acak unik setiap saat
+function kodeAcak(panjang = 6){
+    const huruf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let hasil = "";
+    for(let i=0; i < panjang; i++){
+        hasil += huruf[Math.floor(Math.random() * huruf.length)];
+    }
+    return hasil;
+}
 
-const angka = Math.floor(10000 + Math.random() * 90000);
-const key = "RH-" + angka;
-
-const tanggal = new Date();
-tanggal.setDate(tanggal.getDate() + hari);
-
-const expired = tanggal.toLocaleDateString("id-ID");
-
-document.getElementById("key").textContent = key;
-document.getElementById("expired").textContent = expired;
-
-const item = document.createElement("div");
-item.innerHTML = `
-<b>${key}</b> | ${expired} | 🟢 Active
-<button onclick="this.parentElement.remove()">❌ Hapus</button>
-`;
-item.style.margin = "5px 0";
-
-document.getElementById("history").prepend(item);
+function buatKey(){
+    const hari = document.getElementById("durasi").value;
+    const acak = kodeAcak(6); // Kode acak pasti beda
+    const exp = new Date(Date.now() + hari*86400000).toLocaleString('id-ID');
+    keyTerakhir = `RH-${hari}-${acak}`;
+    document.getElementById("hasil").innerText = keyTerakhir;
+    daftar.unshift({kode:keyTerakhir, exp:exp, aktif:true});
+    simpan(); tampil(); alert("✅ Key dibuat!");
+}
+function salin(){if(!keyTerakhir)return alert("❌ Buat dulu!"); navigator.clipboard.writeText(keyTerakhir).then(()=>alert("✅ Disalin!"));}
+function tampil(){
+    const wadah = document.getElementById("daftar");
+    if(!daftar.length) return wadah.innerHTML = `<div style="text-align:center; opacity:0.7; padding:15px;">Kosong</div>`;
+    wadah.innerHTML = daftar.map((x,i)=>`
+    <div class="item-key ${x.aktif?'':'nonaktif'}">
+        <div><b>Key:</b> ${x.kode}</div>
+        <div><b>Exp:</b> ${x.exp}</div>
+        <div><b>Status:</b> ${x.aktif?'✅ AKTIF':'❌ NONAKTIF'}</div>
+        <div class="aksi">
+            <button onclick="navigator.clipboard.writeText('${x.kode}').then(()=>alert('✅ OK'))">Salin</button>
+            <button onclick="toggle(${i})">${x.aktif?'Matikan':'Nyalakan'}</button>
+            <button onclick="hapus(${i})">Hapus</button>
+        </div>
+    </div>`).join('');
+}
+function toggle(i){daftar[i].aktif = !daftar[i].aktif; simpan(); tampil();}
+function hapus(i){if(confirm("Yakin?")){daftar.splice(i,1); simpan(); tampil();}}
+function simpan(){localStorage.setItem('daftarKey', JSON.stringify(daftar));}
+function cek(){
+    const val = document.getElementById("inputKey").value.trim();
+    const box = document.getElementById("cekHasil");
+    if(!val) return box.innerText = "❌ Masukkan key!";
+    const ok = daftar.some(x=>x.kode===val && x.aktif) || keyTetap.includes(val);
+    box.innerText = ok ? "✅ VALID & AKTIF" : "❌ TIDAK VALID";
+    box.style.color = ok ? "#0f0" : "#f00";
 }
 </script>
+</body>
+</html>
