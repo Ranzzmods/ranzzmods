@@ -73,14 +73,59 @@ color:#4db8ff;
 <div class="login-box">
 <h1>RanXiter Panel ✓</h1>
 
-<input type="text" placeholder="Masukkan username">
-<input type="password" placeholder="Masukkan password">
+<input type="text" id="user" placeholder="Masukkan username">
+<input type="password" id="pass" placeholder="Masukkan password">
 
-<button>MASUK</button>
+<button onclick="login()">MASUK</button>
+<script>
+function login(){
 
+let user = document.getElementById("user").value;
+let pass = document.getElementById("pass").value;
+
+if(user === "RanzXiter" && pass === "Ranz10"){
+window.location.href = "Paneladmin.html";
+}else{
+alert("Username atau Password Salah!");
+}
+
+}
+</script>
 <a href="#">Lupa Password?</a>
 <a href="#">Daftar di sini</a>
 </div>
+
+<h3>Generator Key</h3>
+
+<select id="hari">
+<option value="1">1 Hari</option>
+<option value="3">3 Hari</option>
+<option value="7">7 Hari</option>
+<option value="15">15 Hari</option>
+<option value="21">21 Hari</option>
+<option value="30">30 Hari</option>
+</select>
+
+<button onclick="generateKey()">Generate Key</button>
+
+<p>Key: <span id="key">-</span></p>
+<p>Status: <span id="status">Aktif</span></p>
+<p>Expired: <span id="expired">-</span></p>
+
+<script>
+function generateKey(){
+let hari = parseInt(document.getElementById("hari").value);
+
+let key = "RH-" + Math.floor(Math.random() * 99999);
+
+let expired = new Date();
+expired.setDate(expired.getDate() + hari);
+
+document.getElementById("key").innerHTML = key;
+document.getElementById("expired").innerHTML =
+expired.toLocaleDateString("id-ID");
+}
+</script>
 
 </body>
 </html>
