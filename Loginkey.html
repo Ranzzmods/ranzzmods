@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RANZXITER - ADMIN KEY</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            background: #050816;
+            color: white;
+            padding: 20px 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before{
+            content: "";
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: #0066ff;
+            filter: blur(120px);
+            top: -50px;
+            left: -50px;
+            animation: gerak 5s infinite alternate;
+            z-index: 0;
+        }
+        @keyframes gerak{
+            from{transform: translate(0,0);}
+            to{transform: translate(150px, 100px);}
+        }
+        .container{
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .header{
+            text-align: center;
+            margin: 30px 0 25px;
+        }
+        .header h1{
+            font-size: 42px;
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+        .header p{
+            font-size: 18px;
+            opacity: 0.8;
+        }
+        .card{
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .card h2{
+            font-size: 22px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        select, input{
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            margin-bottom: 18px;
+            background: #f0f0f0;
+            color: #111;
+        }
+        .btn-group{
+            display: flex;
+            gap: 10px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+        button{
+            flex: 1;
+            min-width: 120px;
+            padding: 13px 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:active{transform: scale(0.97);}
+        .btn-generate{background: linear-gradient(135deg, #ff00cc, #9900ff); color: white;}
+        .btn-copy{background: linear-gradient(135deg, #00cc66, #00ff88); color: white;}
+        .btn-verif{background: linear-gradient(135deg, #ff00cc, #9900ff); color: white; width: 100%;}
+        .btn-aktif{background: #22c55e; color: white;}
+        .btn-nonaktif{background: #ef4444; color: white;}
+        .btn-hapus{background: #f59e0b; color: white;}
+
+        .result-box{
+            width: 100%;
+            padding: 16px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 12px;
+            font-size: 14px;
+            word-break: break-all;
+            color: #0ff;
+            margin-bottom: 10px;
+        }
+
+        /* Tampilan Daftar Key */
+        .daftar-key{margin-top: 15px;}
+        .item-key{
+            background: rgba(0,0,0,0.5);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+            border-left: 4px solid #22c55e;
+        }
+        .item-key.nonaktif{border-left-color: #ef4444; opacity: 0.8;}
+        .info-key{margin-bottom: 8px; font-size: 14px; line-height: 1.6;}
+        .info-key span{color: #0ff; font-weight: bold;}
+        .aksi-key{display: flex; gap: 8px; flex-wrap: wrap;}
+        .aksi-key button{padding: 8px 10px; font-size: 13px; min-width: auto; flex: none;}
+
+        footer{
+            text-align: center;
+            margin-top: 30px;
+            opacity: 0.7;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ RANZXITER ⚡</h1>
+            <p>ADMIN KEY SYSTEM 🔐</p>
+        </div>
+
+        <!-- Bagian Generate Key -->
+        <div class="card">
+            <h2>🔑 Buat Key Baru</h2>
+            <select id="pilihDurasi">
+                <option value="1-15000">⚡ 1 Hari - Rp15.000</option>
+                <option value="3-35000">⚡ 3 Hari - Rp35.000</option>
+                <option value="7-60000">⚡ 7 Hari - Rp60.000</option>
+                <option value="10-130000">⚡ 10 Hari - Rp130.000</option>
+                <option value="21-120000">⚡ 21 Hari - Rp120.000</option>
+                <option value="30-190000">⚡ 30 Hari - Rp190.000</option>
+            </select>
+
+            <div class="btn-group">
+                <button class="btn-generate" onclick="buatKey()">✨ Generate Key</button>
+                <button class="btn-copy" onclick="salinKeyTerakhir()">📋 Copy Key</button>
+            </div>
+
+            <div class="result-box" id="hasilKey">Belum ada key dibuat.</div>
+        </div>
+
+        <!-- Daftar Key & Kontrol -->
+        <div class="card">
+            <h2>📋 Daftar Key & Kontrol</h2>
+            <div class="daftar-key" id="daftarKey">
+                <div style="text-align:center; opacity:0.7; padding:15px;">Belum ada riwayat key</div>
+            </div>
+        </div>
+
+        <!-- Verifikasi Key -->
+        <div class="card">
+            <h2>✅ Cek Key</h2>
+            <input type="text" id="inputKey" placeholder="Masukkan key untuk verifikasi">
+            <button class="btn-verif" onclick="cekKey()">🚀 Verifikasi</button>
+            <div class="result-box" id="hasilVerif">Menunggu verifikasi...</div>
+        </div>
+
+        <footer>© 2026 RZ MODS Premium System</footer>
+    </div>
+
+    <script>
+        let keyTerakhir = "";
+        const keyValidTetap = ["RH-8398", "RH-7883", "RH-7382"];
+        let daftarKey = JSON.parse(localStorage.getItem('daftarKeyRZ')) || [];
+
+        // Tampilkan daftar key saat halaman dibuka
+        tampilkanDaftarKey();
+
+        // Fungsi buat key baru
+        function buatKey(){
+            const durasiVal = document.getElementById("pilihDurasi").value;
+            const [hari, harga] = durasiVal.split("-");
+            const acak = Math.random().toString(36).substring(2, 10).toUpperCase();
+            const waktuSekarang = new Date();
+            const waktuExpired = new Date(waktuSekarang.getTime() + (hari * 24 * 60 * 60 * 1000));
+            
+            keyTerakhir = `RZXR-${durasiVal}-${acak}`;
+            document.getElementById("hasilKey").innerText = keyTerakhir;
+
+            // Simpan ke daftar
+            const keyBaru = {
+                kode: keyTerakhir,
+                durasi: `${hari} Hari`,
+                harga: `Rp${harga}`,
+                dibuat: waktuSekarang.toLocaleString('id-ID'),
+                expired: waktuExpired.toLocaleString('id-ID'),
+                aktif: true
+            };
+            daftarKey.unshift(keyBaru);
+            simpanDaftarKey();
+            tampilkanDaftarKey();
+            alert("✅ Key berhasil dibuat & masuk daftar!");
+        }
+
+        // Salin key terakhir
+        function salinKeyTerakhir(){
+            if(!keyTerakhir) return alert("❌ Buat key dulu!");
+            navigator.clipboard.writeText(keyTerakhir).then(()=>alert("✅ Disalin!"));
+        }
+
+        // Tampilkan daftar key
+        function tampilkanDaftarKey(){
+            const wadah = document.getElementById("daftarKey");
+            if(daftarKey.length === 0){
+                wadah.innerHTML = `<div style="text-align:center; opacity:0.7; padding:15px;">Belum ada riwayat key</div>`;
+                return;
+            }
+            wadah.innerHTML = daftarKey.map((item, index) => `
+                <div class="item-key ${item.aktif ? '' : 'nonaktif'}">
+                    <div class="info-key">
+                        📌 Key: <span>${item.kode}</span><br>
+                        ⏳ Durasi: ${item.durasi} | 💸 ${item.harga}<br>
+                        📅 Expired: ${item.expired}<br>
+                        🟢 Status: <span>${item.aktif ? 'AKTIF' : 'NONAKTIF'}</span>
+                    </div>
+                    <div class="aksi-key">
+                        <button onclick="salinItemKey('${item.kode}')">📋 Salin</button>
+                        <button class="${item.aktif ? 'btn-nonaktif' : 'btn-aktif'}" onclick="ubahStatus(${index})">
+                            ${item.aktif ? 'Matikan' : 'Nyalakan'}
+                        </button>
+                        <button class="btn-hapus" onclick="hapusKey(${index})">🗑️ Hapus</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Salin key dari daftar
+        function salinItemKey(kode){
+            navigator.clipboard.writeText(kode).then(()=>alert("✅ Key disalin!"));
+        }
+
+        // Ubah status aktif/nonaktif
+        function ubahStatus(index){
+            daftarKey[index].aktif = !daftarKey[index].aktif;
+            simpanDaftarKey();
+            tampilkanDaftarKey();
+        }
+
+        // Hapus key dari daftar
+        function hapusKey(index){
+            if(confirm("Yakin hapus key ini?")){
+                daftarKey.splice(index, 1);
+                simpanDaftarKey();
+                tampilkanDaftarKey();
+            }
+        }
+
+        // Simpan ke penyimpanan HP
+        function simpanDaftarKey(){
+            localStorage.setItem('daftarKeyRZ', JSON.stringify(daftarKey));
+        }
+
+        // Cek verifikasi key
+        function cekKey(){
+            const input = document.getElementById("inputKey").value.trim();
+            const kotakHasil = document.getElementById("hasilVerif");
+            if(!input) return kotakHasil.innerText = "❌ Masukkan key dulu!";
+
+            const adaDiDaftar = daftarKey.some(item => item.kode === input && item.aktif);
+            const adaTetap = keyValidTetap.includes(input);
+
+            if(adaDiDaftar || adaTetap){
+                kotakHasil.innerText = "✅ Key VALID & AKTIF!";
+                kotakHasil.style.color = "#00ff88";
+            }else{
+                kotakHasil.innerText = "❌ Key TIDAK VALID atau sudah dinonaktifkan!";
+                kotakHasil.style.color = "#ff4444";
+            }
+        }
+    </script>
+</body>
+</html>
