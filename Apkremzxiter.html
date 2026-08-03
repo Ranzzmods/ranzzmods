@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RANZXITER - Verifikasi Key</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI', sans-serif;}
+        body{
+            background:linear-gradient(180deg,#050816,#0a1a3a);
+            min-height:100vh;
+            display:flex;align-items:center;justify-content:center;
+            padding:20px;
+            position:relative;
+            overflow:hidden;
+        }
+
+        /* Efek Salju Jatuh */
+        .salju{
+            position:absolute;
+            top:-10px;
+            color:#ffffff;
+            font-size:16px;
+            animation: jatuhSalju linear infinite;
+            opacity:0.8;
+            pointer-events:none;
+            text-shadow:0 0 3px #88ccff;
+        }
+        @keyframes jatuhSalju{
+            0%{transform:translateY(0) translateX(0); opacity:1;}
+            50%{transform:translateY(50vh) translateX(10px);}
+            100%{transform:translateY(110vh) translateX(-10px); opacity:0.2;}
+        }
+
+        /* Kotak Login */
+        .login-box{
+            width:100%;max-width:420px;
+            background:rgba(10,20,40,0.9);
+            border:2px solid #00ccff80;
+            border-radius:20px;
+            padding:30px 25px;
+            text-align:center;
+            box-shadow:0 0 30px #0066ff40;
+            z-index:10;
+            position:relative;
+        }
+
+        /* Judul */
+        .logo-text{
+            font-size:40px;font-weight:900;
+            background:linear-gradient(90deg,#ff22ff,#00ffff,#88ff00);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            margin-bottom:5px;
+        }
+        .sub-judul{font-size:18px;color:#00ffff;margin-bottom:30px;}
+
+        /* Input */
+        .input-group{margin-bottom:20px;}
+        .input-key{
+            width:100%;padding:16px 18px;
+            background:rgba(0,30,60,0.7);
+            border:1px solid #00ccff60;
+            border-radius:12px;color:#fff;
+            font-size:18px;
+            text-align:center;
+            outline:none;
+            letter-spacing:2px;
+        }
+        .input-key::placeholder{color:#88aacc;letter-spacing:normal;}
+
+        /* Tombol */
+        .btn-masuk{
+            width:100%;padding:16px;
+            border:none;border-radius:12px;
+            font-size:18px;font-weight:bold;
+            background:linear-gradient(90deg,#ff22cc,#aa00ff);
+            color:#fff;cursor:pointer;
+            transition:0.2s;
+            box-shadow:0 4px 15px #ff22aa40;
+        }
+        .btn-masuk:hover{transform:translateY(-2px);}
+
+        /* Link Saluran */
+        .info-bawah{margin-top:20px;color:#88aacc;font-size:14px;}
+        .link-saluran{
+            color:#ffcc00;
+            font-weight:bold;
+            text-decoration:underline;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Efek Salju Otomatis Muncul -->
+<script>
+for(let i=0; i=50; i++){
+    let kepingSalju = document.createElement('div');
+    kepingSalju.className = 'salju';
+    kepingSalju.innerHTML = '❄';
+    kepingSalju.style.left = Math.random()*100 + 'vw';
+    kepingSalju.style.animationDuration = (Math.random()*4 + 6) + 's';
+    kepingSalju.style.animationDelay = Math.random()*8 + 's';
+    document.body.appendChild(kepingSalju);
+}
+</script>
+
+<div class="login-box">
+    <div class="logo-text">RANZXITER</div>
+    <div class="sub-judul">MASUKKAN KUNCI AKSES 🔐</div>
+
+    <div class="input-group">
+        <input type="text" class="input-key" id="input-key" placeholder="Masukkan Key" maxlength="8">
+    </div>
+
+    <button class="btn-masuk" onclick="cekKey()">🚀 VERIFIKASI & MASUK</button>
+
+    <div class="info-bawah">
+        Belum punya kunci? <a class="link-saluran" href="https://whatsapp.com/channel/0029Vb7rT4vL2AU2B1plRy0Q" target="_blank">KLIK</a>
+    </div>
+</div>
+
+<script>
+// Daftar Key Valid
+const keyValid = [
+    "RH-7883",
+    "RH-2738",
+    "RH-3939"
+];
+
+// Fungsi Bunyi
+function bunyiSukses() {
+    const audio = new (window.AudioContext || window.webkitAudioContext)();
+    const nada = audio.createOscillator();
+    const vol = audio.createGain();
+    nada.connect(vol); vol.connect(audio.destination);
+    nada.type = 'sine'; nada.frequency.setValueAtTime(988, audio.currentTime);
+    vol.gain.setValueAtTime(0.25, audio.currentTime);
+    vol.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.15);
+    nada.start(); nada.stop(audio.currentTime + 0.15);
+}
+
+function bunyiSalah() {
+    const audio = new (window.AudioContext || window.webkitAudioContext)();
+    const nada = audio.createOscillator();
+    const vol = audio.createGain();
+    nada.connect(vol); vol.connect(audio.destination);
+    nada.type = 'triangle'; nada.frequency.setValueAtTime(220, audio.currentTime);
+    vol.gain.setValueAtTime(0.2, audio.currentTime);
+    vol.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.2);
+    nada.start(); nada.stop(audio.currentTime + 0.2);
+}
+
+// Cek Key
+function cekKey() {
+    const keyMasuk = document.getElementById('input-key').value.trim().toUpperCase();
+    
+    if(!keyMasuk) {
+        bunyiSalah();
+        alert('❌ Silakan masukkan kunci terlebih dahulu!');
+        return;
+    }
+
+    if(keyValid.includes(keyMasuk)) {
+        bunyiSukses();
+        alert('✅ KUNCI VALID! Selamat datang di RANZXITER 🎉');
+    } else {
+        bunyiSalah();
+        alert('❌ KUNCI TIDAK TERDAFTAR ATAU SUDAH KADALUARSA!');
+    }
+}
+</script>
+
+</body>
+</html>
