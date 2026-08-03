@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ranzz Injektor</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
+        html,body{
+            width:100%;height:100%;
+            background:#0a2463;
+            color:#fff;
+            overflow:hidden;
+            position:relative;
+        }
+
+        .salju{
+            position:absolute;
+            color:#ffffff;
+            font-size:14px;
+            animation: jatuhSalju 15s linear infinite;
+            opacity:0.9;
+            pointer-events:none;
+            z-index:1;
+        }
+        @keyframes jatuhSalju{
+            0%{transform:translateY(0) translateX(0); opacity:1;}
+            50%{opacity:0.7;}
+            100%{transform:translateY(110vh) translateX(10px); opacity:0;}
+        }
+
+        .menu-icon{
+            position:absolute;
+            top:25px;
+            left:25px;
+            cursor:pointer;
+            z-index:20;
+        }
+        .garis{
+            width:40px;height:6px;
+            background:linear-gradient(90deg,#ff0000,#ff4444);
+            margin:6px 0;
+            border-radius:3px;
+        }
+
+        .judul-atas{
+            width:100%;
+            text-align:center;
+            padding-top:20px;
+            font-size:55px;
+            font-weight:900;
+            color:#ff0000;
+            text-shadow:0 0 20px #ff0000;
+            z-index:5;
+            position:relative;
+        }
+
+        .kotak-star{
+            width:75%;max-width:400px;
+            margin:25px auto;
+            background:#165DFF;
+            border:3px solid #87CEFA;
+            border-radius:12px;
+            padding:15px;
+            text-align:center;
+            position:relative;
+            z-index:5;
+            cursor:pointer;
+            transition:0.1s;
+        }
+        .kotak-star:active{transform:scale(0.97);}
+        .kotak-star h2{
+            font-size:28px;
+            font-weight:800;
+            color:#ffffff;
+            letter-spacing:1px;
+        }
+
+        .kotak-info{
+            width:90%;max-width:500px;
+            margin:0 auto 30px auto;
+            background:rgba(22, 93, 255, 0.25);
+            border:4px solid #ff0000;
+            border-radius:15px;
+            padding:20px 25px;
+            position:relative;
+            z-index:5;
+        }
+        .judul-info{
+            text-align:center;
+            color:#ff0000;
+            font-size:28px;
+            font-weight:900;
+            margin-bottom:15px;
+            padding-bottom:10px;
+            border-bottom:2px solid #ff0000;
+        }
+        .baris-info{
+            display:flex;
+            justify-content:space-between;
+            padding:12px 5px;
+            font-size:22px;
+            font-weight:600;
+            border-bottom:1px solid #ffffff30;
+        }
+        .baris-info:last-child{border-bottom:none;}
+        .label{color:#ffcc00;}
+        .nilai{color:#ffffff;}
+
+        .bagian-bawah{
+            position:absolute;
+            bottom:30px;
+            left:50%;
+            transform:translateX(-50%);
+            width:80%;
+            max-width:400px;
+            text-align:center;
+            z-index:5;
+        }
+        .logo-ff{
+            width:120px;
+            height:auto;
+            margin-bottom:15px;
+        }
+        .tombol-login-ff{
+            width:100%;
+            padding:16px;
+            background:#ff4500;
+            border:3px solid #ff6a33;
+            border-radius:12px;
+            font-size:22px;
+            font-weight:bold;
+            color:white;
+            cursor:pointer;
+            transition:0.1s;
+        }
+        .tombol-login-ff:active{background:#cc3700; transform:scale(0.97);}
+
+        /* ✅ PANEL SUDAH SESUAI WARNA & TULISAN */
+        .panel-fitur{
+            position:fixed;
+            top:50%;left:50%;
+            transform:translate(-50%, -50%);
+            width:88%;max-width:400px;
+            background:#0f1424;
+            border:3px solid #ff0000;
+            border-radius:16px;
+            padding:15px;
+            z-index:9999;
+            display:none;
+            box-shadow:0 0 35px #ff000075;
+        }
+        .panel-atas{
+            display:flex;justify-content:space-between;align-items:center;
+            margin-bottom:12px;padding-bottom:8px;
+            border-bottom:2px solid #ff0000;
+        }
+        .panel-atas h3{font-size:22px;color:#ff0000;font-weight:900;}
+        .tombol-kontrol{display:flex;gap:8px;}
+        .btn-min, .btn-tutup{
+            width:30px;height:30px;
+            border:none;border-radius:6px;
+            font-size:20px;font-weight:bold;
+            cursor:pointer;
+        }
+        .btn-min{background:#ffcc00;color:#000;}
+        .btn-tutup{background:#ff0000;color:#fff;}
+
+        .fitur-item{
+            display:flex;justify-content:space-between;align-items:center;
+            padding:10px 10px;margin:6px 0;
+            background:rgba(255,255,255,0.06);
+            border-radius:8px;font-size:16px;
+            cursor:pointer;transition:0.15s;
+            border-left:3px solid transparent;
+        }
+        .fitur-item:active{transform:scale(0.97);}
+        /* ✅ PAS AKTIF: WARNA HIJAU & TULISAN BERUBAH */
+        .fitur-item.aktif{
+            background:rgba(0, 255, 100, 0.2);
+            border-left:3px solid #00ff66;
+        }
+        .status{color:#ff4444;font-weight:bold;}
+        .fitur-item.aktif .status{color:#00ff66;}
+
+        .tombol-bawah{margin-top:15px;display:flex;gap:10px;}
+        .btn-lanjut, .btn-tutup-p{
+            flex:1;padding:12px;border:none;border-radius:10px;
+            font-size:17px;font-weight:bold;cursor:pointer;
+        }
+        .btn-lanjut{background:#00aa00;color:#fff;}
+        .btn-tutup-p{background:#cc0000;color:#fff;}
+
+        .halaman-login{
+            position:fixed;
+            top:0;left:0;
+            width:100%;height:100%;
+            background:rgba(10, 36, 99, 0.95);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:10;
+        }
+        .kotak-login{
+            width:85%;max-width:400px;
+            background:#163a8a;
+            border:3px solid #ff0000;
+            border-radius:15px;
+            padding:30px 25px;
+            text-align:center;
+            box-shadow:0 0 40px #ff000070;
+            position:relative;
+            z-index:11;
+        }
+        .kotak-login h2{
+            color:#ffcc00;
+            font-size:28px;
+            margin-bottom:20px;
+            font-weight:bold;
+        }
+        .kotak-login input{
+            width:100%;
+            padding:16px;
+            font-size:20px;
+            font-weight:bold;
+            border:3px solid #ff0000;
+            border-radius:10px;
+            background:#2a5aba;
+            color:#fff;
+            text-align:center;
+            margin-bottom:15px;
+            outline:none;
+        }
+        .btn-login{
+            width:100%;
+            padding:15px;
+            background:#ff0000;
+            color:#fff;
+            border:none;
+            border-radius:10px;
+            font-size:20px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+        .btn-login:active{background:#cc0000;}
+        .pesan-salah{
+            color:#ff4444;
+            margin-top:10px;
+            display:none;
+            font-weight:bold;
+        }
+
+        .isi-utama{display:none; width:100%; height:100%; padding-top:10px;}
+    </style>
+</head>
+<body>
+
+<script>
+function bunyiAktif(){
+    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNocRxt8fPLJzJgU/+/B8AAP///wAA');
+    audio.play().catch(e=>{});
+}
+
+function bukaFF(){
+    alert("✅ SIAP! MEMBUKA FREE FIRE...");
+    setTimeout(()=>{
+        window.location.href = "garena-freefire://";
+        setTimeout(()=>{
+            window.location.href = "https://play.google.com/store/apps/details?id=com.dts.freefireth";
+        }, 800);
+    }, 300);
+}
+
+// ✅ FUNGSI UBAH STATUS & WARNA OTOMATIS
+function ubahStatus(elemen){
+    elemen.classList.toggle('aktif');
+    const teks = elemen.querySelector('.status');
+    if(elemen.classList.contains('aktif')){
+        teks.innerText = "AKTIF";
+    }else{
+        teks.innerText = "MATI";
+    }
+}
+</script>
+
+<script>
+for(let i=0; i<180; i++){
+    let s = document.createElement('div');
+    s.className = 'salju';
+    s.innerHTML = '❄';
+    s.style.left = Math.random()*100 + 'vw';
+    s.style.animationDelay = Math.random()*15 + 's';
+    document.body.appendChild(s);
+}
+</script>
+
+<div class="halaman-login" id="halamanLogin">
+    <div class="kotak-login">
+        <h2>🔑 MASUKKAN KEY</h2>
+        <input type="text" id="inputKey" autocomplete="off">
+        <button class="btn-login" onclick="cekKey()">✅ MASUK</button>
+        <div class="pesan-salah" id="pesanSalah">❌ Key Salah / Tidak Terdaftar!</div>
+    </div>
+</div>
+
+<div class="isi-utama" id="isiUtama">
+    <div class="menu-icon">
+        <div class="garis"></div>
+        <div class="garis"></div>
+        <div class="garis"></div>
+    </div>
+
+    <div class="judul-atas">Ranzz Injektor</div>
+
+    <div class="kotak-star" onclick="bunyiAktif(); document.getElementById('panelUtama').style.display='block';">
+        <h2>STAR INJEKTOR</h2>
+    </div>
+
+    <div class="kotak-info">
+        <div class="judul-info">⚠️ KEY INFORMASI</div>
+        <div class="baris-info">
+            <span class="label">KEY :</span>
+            <span class="nilai" id="isiKey">-</span>
+        </div>
+        <div class="baris-info">
+            <span class="label">TANGGAL :</span>
+            <span class="nilai" id="isiTgl">-</span>
+        </div>
+        <div class="baris-info">
+            <span class="label">WAKTU :</span>
+            <span class="nilai" id="isiJam">-</span>
+        </div>
+        <div class="baris-info">
+            <span class="label">MASA BERLAKU :</span>
+            <span class="nilai" id="isiHari">-</span>
+        </div>
+        <div class="baris-info">
+            <span class="label">HARGA :</span>
+            <span class="nilai" id="isiHarga">-</span>
+        </div>
+    </div>
+
+    <div class="bagian-bawah">
+        <img src="https://i.imgur.com/9ZbXQZL.png" alt="Logo Free Fire" class="logo-ff">
+        <button class="tombol-login-ff" onclick="bunyiAktif(); bukaFF()">🔴 LOGIN KE FREE FIRE</button>
+    </div>
+
+    <!-- ✅ PANEL FITUR LENGKAP -->
+    <div class="panel-fitur" id="panelUtama">
+        <div class="panel-atas">
+            <h3>⚙️ MENU RANZXITER</h3>
+            <div class="tombol-kontrol">
+                <button class="btn-min" onclick="alert('Panel diperkecil!')">−</button>
+                <button class="btn-tutup" onclick="document.getElementById('panelUtama').style.display='none';">×</button>
+            </div>
+        </div>
+
+        <div class="fitur-item" onclick="ubahStatus(this)">
+            <span>🎯 HEADLOCK XIT</span>
+            <span class="status">MATI</span>
+        </div>
+        <div class="fitur-item" onclick="ubahStatus(this)">
+            <span>👤 BODY LO</span>
+            <span class="status">MATI</span>
+        </div>
+        <div class="fitur-item" onclick="ubahStatus(this)">
+            <span>🎮 HEADTRICK XIT</span>
+            <span class="status">MATI</span>
+        </div>
+        <div class="fitur-item" onclick="ubahStatus(this)">
+            <span>✨ DRAG SMOOTH</span>
+            <span class="status">MATI</span>
+        </div>
+        <div class="fitur-item" onclick="ubahStatus(this)">
+            <span>📈 MAX SOLUCION</span>
+            <span class="status">MATI</span>
+        </div>
+        <div class="fitur-item" onclick="ubahStatus(this)">
+            <span>👑 GOD AIM</span>
+            <span class="status">MATI</span>
+        </div>
+        <div class="fitur-item" onclick="ubahStatus(this)">
+            <span>🎯 AIM PRECIOUS</span>
+            <span class="status">MATI</span>
+        </div>
+        <div class="fitur-item" onclick="ubahStatus(this)">
+            <span>🔥 DRAG HEAD</span>
+            <span class="status">MATI</span>
+        </div>
+        <div class="fitur-item" onclick="ubahStatus(this)">
+            <span>🛡️ Hide SS 00</span>
+            <span class="status">MATI</span>
+        </div>
+        <div class="fitur-item" onclick="ubahStatus(this)">
+            <span>📸 Screenshot Hilang</span>
+            <span class="status">MATI</span>
+        </div>
+        <div class="fitur-item" onclick="ubahStatus(this)">
+            <span>⚡ Optimalkan RAM</span>
+            <span class="status">MATI</span>
+        </div>
+
+        <div class="tombol-bawah">
+            <button class="btn-lanjut" onclick="bukaFF()">✅ LANJUT KE FF</button>
+            <button class="btn-tutup-p" onclick="document.getElementById('panelUtama').style.display='none';">❌ TUTUP</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const daftarKey = [
+    {key:"RH-7883", paket:"7 Hari - Rp 60.000"},
+    {key:"RH-2738", paket:"1 Hari - Rp 15.000"},
+    {key:"RH-6764", paket:"10 Hari - Rp 130.000"},
+    {key:"RH-3939", paket:"30 Hari - Rp 190.000"}
+];
+
+function cekKey(){
+    const ketikKey = document.getElementById('inputKey').value.trim().toUpperCase();
+    const keyTerpakai = localStorage.getItem('keyTerpakaiRanzz');
+
+    if(keyTerpakai && keyTerpakai !== ketikKey){
+        document.getElementById('pesanSalah').innerText = "❌ MAKSIMAL 1 KEY PER HP! HP INI SUDAH PAKAI KEY LAIN";
+        document.getElementById('pesanSalah').style.display = 'block';
+        return;
+    }
+
+    const dataKey = daftarKey.find(k => k.key === ketikKey);
+    if(dataKey){
+        localStorage.setItem('keyTerpakaiRanzz', ketikKey);
+        document.getElementById('halamanLogin').style.display = 'none';
+        document.getElementById('isiUtama').style.display = 'block';
+        
+        document.getElementById('isiKey').innerText = ketikKey;
+        const skrg = new Date();
+        document.getElementById('isiTgl').innerText = skrg.toLocaleDateString('id-ID', {day:'2-digit', month:'long', year:'numeric'});
+        document.getElementById('isiJam').innerText = skrg.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
+        
+        const bagi = dataKey.paket.split(' - ');
+        document.getElementById('isiHari').innerText = bagi[0];
+        document.getElementById('isiHarga').innerText = bagi[1];
+    }else{
+        document.getElementById('pesanSalah').innerText = "❌ Key Salah / Tidak Terdaftar!";
+        document.getElementById('pesanSalah').style.display = 'block';
+    }
+}
+
+window.onload = function(){
+    const keyTerpakai = localStorage.getItem('keyTerpakaiRanzz');
+    if(keyTerpakai){
+        const dataKey = daftarKey.find(k => k.key === keyTerpakai);
+        if(dataKey){
+            document.getElementById('halamanLogin').style.display = 'none';
+            document.getElementById('isiUtama').style.display = 'block';
+            
+            document.getElementById('isiKey').innerText = keyTerpakai;
+            const skrg = new Date();
+            document.getElementById('isiTgl').innerText = skrg.toLocaleDateString('id-ID', {day:'2-digit', month:'long', year:'numeric'});
+            document.getElementById('isiJam').innerText = skrg.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
+            
+            const bagi = dataKey.paket.split(' - ');
+            document.getElementById('isiHari').innerText = bagi[0];
+            document.getElementById('isiHarga').innerText = bagi[1];
+        }
+    }
+}
+</script>
+
+</body>
+</html>
