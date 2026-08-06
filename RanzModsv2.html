@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RanzMods | Generator Key</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a1629, #16213e, #0f3460);
+            color: #f8fafc;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* === BAGIAN LAYAR LOGIN === */
+        #layarLogin{
+            position:fixed;
+            top:0;left:0;
+            width:100%;height:100%;
+            background:linear-gradient(135deg, #0a1629, #16213e, #0f3460);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:999;
+        }
+        .kotak-login{
+            background:rgba(30, 41, 59, 0.85);
+            padding:30px;
+            border-radius:12px;
+            border:2px solid #ffd700;
+            width:90%;max-width:350px;
+            text-align:center;
+        }
+        .kotak-login h2{
+            color:#ffd700;
+            margin-bottom:20px;
+        }
+        .kotak-login input{
+            width:100%;padding:12px;margin:8px 0;
+            border-radius:6px;border:none;
+            background:#27293d;color:#fff;
+            text-align:center;font-size:15px;
+            border:1px solid #4f46e5;
+        }
+        .btn-login{
+            width:100%;padding:12px;
+            background:linear-gradient(90deg,#22c55e,#10b981);
+            color:#fff;border:none;border-radius:6px;
+            font-weight:bold;cursor:pointer;margin-top:10px;font-size:16px;
+        }
+        .pesan-salah{color:#ff4444; font-weight:bold; margin-top:12px; display:none;}
+
+        /* === BAGIAN UTAMA GENERATOR === */
+        #kontenUtama{display:none;} /* disembunyikan sebelum login */
+
+        h1 {
+            text-align: center;
+            font-size: 20px;
+            background: linear-gradient(90deg, #f472b6, #fbbf24, #34d399, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom:25px;
+            margin-top:10px;
+        }
+
+        .mod-container {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 12px;
+            padding:15px;
+            margin-bottom:25px;
+            border:2px solid rgba(255, 215, 0, 0.5);
+            text-align:center;
+        }
+        .mod-nama-utama {
+            font-size:14px;
+            font-weight:bold;
+            color:#ffd700;
+        }
+
+        .jumlah-harga-box{
+            display:flex; gap:15px; align-items:center;
+            background:#1a1a2e; border-radius:10px; padding:15px; margin-bottom:15px; border:1px solid #312e81;
+            flex-wrap:wrap;
+        }
+        .bagian-kiri,.bagian-tengah,.bagian-kanan{ flex:1; min-width:140px; }
+        .label-atas{ font-size:12px; color:#86efac; margin-bottom:6px; font-weight:bold; }
+        .input-jumlah,.input-harga,.input-maks{
+            width:100%; background:#27293d; color:#fcd34d; border:1px solid #4f46e5;
+            border-radius:6px; padding:10px 12px; font-size:14px; font-weight:bold;
+            text-align:center; outline:none;
+        }
+
+        .owner-panel{
+            background:rgba(255,215,0,0.08);
+            border:2px solid #ffd700;
+            border-radius:12px;
+            padding:20px;
+            margin:30px 0;
+        }
+        .owner-judul{
+            text-align:center;
+            color:#ffd700;
+            font-size:17px;
+            font-weight:bold;
+            margin-bottom:15px;
+        }
+        .ringkasan-penjualan{
+            display:grid; grid-template-columns:repeat(auto-fit, minmax(120px,1fr));
+            gap:10px; margin-bottom:15px;
+        }
+        .kotak-ringkas{
+            background:rgba(0,0,0,0.3); border-radius:8px; padding:10px; text-align:center;
+        }
+        .ringkas-jml{ font-size:18px; font-weight:bold; color:#4ade80; }
+        .ringkas-lbl{ font-size:11px; color:#ddd; margin-top:3px; }
+        .daftar-jual{
+            width:100%; border-collapse:collapse; margin-top:10px;
+        }
+        .daftar-jual th,.daftar-jual td{
+            border:1px solid rgba(255,215,0,0.3); padding:8px 5px; font-size:11px; text-align:center;
+        }
+        .daftar-jual th{ background:rgba(255,215,0,0.2); color:#ffd700; }
+        .btn-aktif{ background:#22c55e; color:white; border:none; padding:3px 5px; border-radius:4px; margin:0 2px; cursor:pointer; }
+        .btn-nonaktif{ background:#ef4444; color:white; border:none; padding:3px 5px; border-radius:4px; margin:0 2px; cursor:pointer; }
+        .btn-salin{ background:#2563eb; color:white; border:none; padding:3px 5px; border-radius:4px; margin:0 2px; cursor:pointer; }
+        .btn-hapus{ background:#dc2626; color:white; border:none; padding:3px 5px; border-radius:4px; margin:0 2px; cursor:pointer; }
+        .btn-simpan,.btn-reset{
+            border:none; padding:8px 15px; border-radius:6px; font-weight:bold;
+            cursor:pointer; margin-top:12px; width:48%;
+            display:inline-block;
+        }
+        .btn-simpan{ background:linear-gradient(90deg,#ffd700,#f59e0b); color:#000; margin-right:4%; }
+        .btn-reset{ background:linear-gradient(90deg,#ff4444,#cc0000); color:#fff; }
+
+        .generator-box{
+            background:rgba(30,41,59,0.6); border-radius:10px; padding:15px;
+            max-width:400px; margin:0 auto 20px; border:2px solid rgba(56,189,248,0.4); text-align:center;
+        }
+        .btn-generate{
+            padding:8px 20px; background:linear-gradient(90deg,#22c55e,#10b981); color:white;
+            font-size:13px; border:none; border-radius:6px; cursor:pointer; font-weight:bold; margin-bottom:10px;
+        }
+        .hasil-key{
+            font-size:16px; color:#22d3ee; padding:8px; background:rgba(0,0,0,0.3);
+            border-radius:5px; margin:10px 0; font-weight:bold;
+        }
+        .pesan-sukses{ color:#4ade80; font-weight:bold; margin-top:8px; display:none; }
+        .pesan-error{ color:#ff4444; font-weight:bold; margin-top:8px; display:none; }
+        #tempSalin{position:absolute;left:-9999px;top:0;}
+    </style>
+</head>
+<body>
+
+    <!-- LAYAR LOGIN -->
+    <div id="layarLogin">
+        <div class="kotak-login">
+            <h2>🔐 LOGIN RANZMODS</h2>
+            <input type="text" id="user" placeholder="Masukkan Username" required>
+            <input type="password" id="pass" placeholder="Masukkan Password" required>
+            <button class="btn-login" onclick="cekLogin()">MASUK SEKARANG</button>
+            <div class="pesan-salah" id="pesanSalah">❌ Username atau Password SALAH!</div>
+        </div>
+    </div>
+
+    <!-- KONTEN UTAMA GENERATOR KEY -->
+    <div id="kontenUtama">
+        <h1>GENERATOR KEY RANZMODS</h1>
+        <input type="text" id="tempSalin" readonly>
+
+        <div class="mod-container">
+            <div class="mod-nama-utama">RANZMODS INJEKTOR FF</div>
+        </div>
+
+        <div class="jumlah-harga-box">
+            <div class="bagian-kiri">
+                <div class="label-atas">PILIH JUMLAH KEY</div>
+                <input type="number" class="input-jumlah" id="inputQty" min="1" value="1">
+            </div>
+            <div class="bagian-tengah">
+                <div class="label-atas">MAKS PERANGKAT PER KEY</div>
+                <input type="number" class="input-maks" id="inputMaks" min="1" value="1">
+            </div>
+            <div class="bagian-kanan">
+                <div class="label-atas">PILIH LAMA AKTIF</div>
+                <input type="number" class="input-harga" id="inputDay" min="1" value="1" placeholder="Hari">
+            </div>
+        </div>
+        <button class="btn-generate" style="margin:10px auto;display:block;" onclick="buatKey()">🔑 BUAT KEY BARU</button>
+
+        <div class="owner-panel">
+            <div class="owner-judul">👑 DAFTAR KEY & KENDALI</div>
+            <div class="ringkasan-penjualan">
+                <div class="kotak-ringkas">
+                    <div class="ringkas-jml" id="totalTerjual">0</div>
+                    <div class="ringkas-lbl">Total Key Dibuat</div>
+                </div>
+                <div class="kotak-ringkas">
+                    <div class="ringkas-jml" id="keyBelumPakai">0</div>
+                    <div class="ringkas-lbl">Belum Terpakai</div>
+                </div>
+                <div class="kotak-ringkas">
+                    <div class="ringkas-jml" id="keySudahPakai">0</div>
+                    <div class="ringkas-lbl">Sudah Capai Batas</div>
+                </div>
+            </div>
+            <table class="daftar-jual">
+                <tr><th>Key</th><th>Lama</th><th>Harga</th><th>Pakai / Maks</th><th>Status Aktif</th><th>Aksi</th></tr>
+                <tbody id="isiDaftarJual">
+                    <tr><td colspan="6">Belum ada key dibuat...</td></tr>
+                </tbody>
+            </table>
+            <button class="btn-simpan" onclick="simpanCatatan()">💾 Simpan Semua Data</button>
+            <button class="btn-reset" onclick="resetPenjualan()">🗑️ Hapus Semua Key</button>
+        </div>
+
+        <div class="generator-box">
+            <h2>🔑 UJI COBA PAKAI KEY</h2>
+            <input type="text" id="cekKeyInput" placeholder="Masukkan key disini..." style="width:100%;padding:8px;margin:10px 0;border-radius:5px;border:none;background:#27293d;color:white;text-align:center;font-size:16px;">
+            <button class="btn-generate" onclick="cekValidKey()">✅ GUNAKAN KEY</button>
+            <div class="hasil-key" id="hasilKeyCek">---</div>
+            <div class="pesan-sukses" id="pesanSukses">✅ BERHASIL LOGIN! KEY DIPAKAI PERANGKAT BARU</div>
+            <div class="pesan-error" id="pesanError">❌ MAKS PERANGKAT TERCAPAI! TIDAK BISA PAKAI LAGI</div>
+        </div>
+    </div>
+
+    <script>
+        // FUNGSI CEK LOGIN
+        function cekLogin(){
+            const user = document.getElementById('user').value.trim();
+            const pass = document.getElementById('pass').value.trim();
+            const pesan = document.getElementById('pesanSalah');
+
+            if(user === "RanzMods1" && pass === "282883"){
+                // Benar: sembunyikan login, tampilkan generator
+                document.getElementById('layarLogin').style.display = "none";
+                document.getElementById('kontenUtama').style.display = "block";
+            }else{
+                // Salah: muncul pesan merah
+                pesan.style.display = "block";
+            }
+        }
+
+        // FUNGSI GENERATOR KEY
+        let catatanJual = JSON.parse(localStorage.getItem("catatanJualRanz")) || [];
+        const daftarHargaPerHari = {1:15000,7:60000,10:130000,30:190000};
+
+        function salinKey(teks){
+            const el = document.getElementById('tempSalin');
+            el.value = teks;
+            el.select();
+            el.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            alert(`✅ BERHASIL SALIN: ${teks}`);
+        }
+
+        function perbaruiSemua(){
+            document.getElementById('totalTerjual').textContent = catatanJual.length;
+            let belum = catatanJual.filter(i=>i.dipakai < i.maksPerangkat).length;
+            let sudah = catatanJual.filter(i=>i.dipakai >= i.maksPerangkat).length;
+            document.getElementById('keyBelumPakai').textContent = belum;
+            document.getElementById('keySudahPakai').textContent = sudah;
+            muatDaftarJual();
+        }
+
+        function muatDaftarJual(){
+            const wadah = document.getElementById('isiDaftarJual');
+            if(catatanJual.length === 0){
+                wadah.innerHTML = `<tr><td colspan="6">Belum ada key dibuat...</td></tr>`;
+                return;
+            }
+            wadah.innerHTML = "";
+            catatanJual.forEach((item, idx) => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${item.key}</td>
+                    <td>${item.hari} Hari</td>
+                    <td>Rp ${item.harga.toLocaleString('id-ID')}</td>
+                    <td>${item.dipakai} / ${item.maksPerangkat}</td>
+                    <td>${item.aktif ? '✅ AKTIF' : '❌ TIDAK AKTIF'}</td>
+                    <td>
+                        <button class="btn-salin">📋 Salin</button>
+                        <button class="btn-aktif">✅</button>
+                        <button class="btn-nonaktif">❌</button>
+                        <button class="btn-hapus">🗑️</button>
+                    </td>
+                `;
+                wadah.appendChild(tr);
+
+                tr.querySelector('.btn-salin').addEventListener('click', ()=> salinKey(item.key));
+                tr.querySelector('.btn-aktif').addEventListener('click', ()=>{
+                    catatanJual[idx].aktif = true;
+                    simpanCatatan();
+                });
+                tr.querySelector('.btn-nonaktif').addEventListener('click', ()=>{
+                    catatanJual[idx].aktif = false;
+                    simpanCatatan();
+                });
+                tr.querySelector('.btn-hapus').addEventListener('click', ()=>{
+                    if(confirm("Yakin mau HAPUS key ini?")){
+                        catatanJual.splice(idx, 1);
+                        simpanCatatan();
+                    }
+                });
+            });
+        }
+
+        function cekValidKey(){
+            const input = document.getElementById('cekKeyInput').value.trim();
+            document.getElementById('pesanSukses').style.display="none";
+            document.getElementById('pesanError').style.display="none";
+            if(!input) return alert("Masukkan key dulu!");
+
+            const cari = catatanJual.find(i=>i.key === input);
+            if(!cari){
+                document.getElementById('hasilKeyCek').textContent = "❌ KEY TIDAK TERDAFTAR";
+                return;
+            }
+            if(!cari.aktif){
+                document.getElementById('hasilKeyCek').textContent = "❌ KEY SUDAH DIMATIKAN ADMIN";
+                return;
+            }
+            if(cari.dipakai >= cari.maksPerangkat){
+                document.getElementById('hasilKeyCek').textContent = `${cari.key} | ${cari.dipakai}/${cari.maksPerangkat}`;
+                document.getElementById('pesanError').style.display="block";
+                return;
+            }
+            cari.dipakai +=1;
+            simpanCatatan();
+            document.getElementById('hasilKeyCek').textContent = `${cari.key} | ${cari.dipakai}/${cari.maksPerangkat}`;
+            document.getElementById('pesanSukses').style.display="block";
+        }
+
+        function buatKey(){
+            const qty = parseInt(document.getElementById('inputQty').value) ||1;
+            const maks = parseInt(document.getElementById('inputMaks').value) ||1;
+            const hari = parseInt(document.getElementById('inputDay').value) ||1;
+            const harga = daftarHargaPerHari[hari] || 15000;
+
+            for(let i=0;i<qty;i++){
+                const keyBaru = `RH-${Math.floor(1000+Math.random()*9000)}`;
+                catatanJual.unshift({
+                    key:keyBaru, 
+                    hari:hari, 
+                    harga:harga, 
+                    dipakai:0,
+                    maksPerangkat: maks,
+                    aktif:true
+                });
+            }
+            simpanCatatan();
+            alert(`✅ Berhasil buat ${qty} key!\nBatas per key: ${maks} Perangkat`);
+        }
+
+        function simpanCatatan(){
+            localStorage.setItem("catatanJualRanz",JSON.stringify(catatanJual));
+            perbaruiSemua();
+        }
+        function resetPenjualan(){
+            if(confirm("Hapus SEMUA key & data?")){
+                catatanJual=[];
+                localStorage.removeItem("catatanJualRanz");
+                perbaruiSemua();
+                document.getElementById('cekKeyInput').value="";
+                document.getElementById('hasilKeyCek').textContent="---";
+            }
+        }
+
+        perbaruiSemua();
+    </script>
+
+</body>
+</html>
