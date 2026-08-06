@@ -1,134 +1,554 @@
-
 <!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RanzXiter Store</title>
+<html lang="id" data-theme="dark">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="https://fixaonly.com/assets/images/favicon/1774753540.png" />
+    <meta name="description" content="Fixa Only adalah platform top up game terpercaya dengan harga terbaik di Indonesia.
+Kami menyediakan berbagai kebutuhan gaming dengan proses cepat, aman, dan 100% legal.
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+Sebagai store spesialis Mobile Legends, kami hadir untuk memberikan pengalaman top up yang mudah dan nyaman, kapan pun kamu butuh (24 jam nonstop).
+
+Kami berkomitmen untuk terus berkembang dan memberikan pelayanan terbaik bagi para gamers.
+Dapatkan juga berbagai promo menarik, tips, dan info terbaru dengan mengikuti sosial media kami." />
+    <meta name="keyword" content="website cheat" />
+    <meta name="author" content="@akiracode" />
+    <meta name="theme-color" content="#ff00ff" />
+    <meta name="robots" content="index, follow" />
+    <meta content="desktop" name="device" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="apple-mobile-web-app-title" content="DGSTOREID-Top Up Games Murah, legal &amp; Cepat di Indonesia #1." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fixaonly.com" />
+    <meta property="og:title" content="FIXAONLY-Top Up Games Murah, legal &amp; Cepat di Indonesia #1." />
+    <meta property="og:site_name" content="FIXAONLY-Top Up Games Murah, legal &amp; Cepat di Indonesia #1." />
+    <meta property="og:description" content="FIXAONLY adalah Platform Top Up Game Termurah di Indonesia. Penuhi Kebutuhan Gaming Mu Bersama Cak Amin Store. Store Specialist Game Mobile Legends No.1 Murah , Aman , Terpercaya Dan Legal 100% (Open 24 Jam). Ghstore Sahabat Para Gamers Kami berdedikasi untuk menyediakan layanan terbaik dan terus menerus inovatif untuk memenuhi kebutuhan gamers. Jangan lewatkan kesempatan untuk mengikuti kami di sosial media dan tetap update dengan informasi terbaru, tips, trik, dan promo-promo menarik lainnya. Jadilah bagian dari komunitas gamers terbesar dan terpercaya dengan Cak Amin Store! Jangan Lupa Follow Sosial Media Kita Dapatkan info dan promo menarik yang akan terus mengalir untuk menambah kegembiraan dalam setiap game yang Anda mainkan. Ghstore, solusi one-stop untuk semua kebutuhan gaming Anda!" />
+    <meta property="og:image" content="https://fixaonly.com/assets/images/icon/1774753540.png" />
+    <meta property="og:image:alt" content="⚡ Versi 2 (Santai &amp; Jualan)
+
+Mau top up game biar makin seru?
+Di Fixa Only aja!
+
+✔ Proses cepat
+✔ Pembayaran lengkap
+✔ Banyak pilihan game populer
+
+Mulai dari Mobile Legends, PUBG Mobile, Valorant, Free Fire, sampai Genshin Impact dan lainnya tersedia di sini!
+
+🔥 Top up gampang, main makin menang!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
+    <meta name="csrf-token" content="5sidzBhzF5pKCtL9lXkFlRxiyAjjOjX4xyNMxWag" />
+    <style>
+      :root {
+            --bg-body: #f6f8fd;
+            --bg-dark: #0e1221;
+            --primary-color: #ff00ff;
+            --secondary-color: #0e1221;
+            --light-yellow: #deffea;
+            --light-blue: #252f45e6;
+            --dark-blue: #0e1221;
+            --black: #34364a;
+            --black-text: #6b7c8e;
+            --dark-grey: #e5e9f2;
+            --navbar: #14192be3;
+            --light-grey: #f6f8fd;
+            --white: #fff;
+        }
+
+        .desc-heading-name,
+        h4.desc-heading_foot,
+        span.desc-heading-name,
+        span.time,
+        span.poweredby {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .pull-left {
+            float: left
+        }
+
+        .desc-heading_foot {
+            position: relative;
+            margin-bottom: 0;
+            margin-top: 6px;
+            top: 6px
+        }
+
+        .desc-heading-name {
+            display: inline-block !important;
+            overflow: hidden;
+            float: left;
+            width: 100%;
+            color: #000
+        }
+
+        .desc-heading-name a {
+            text-decoration: none
+        }
+
+        .desc-heading-name a span:first-child {
+            color: #000;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 45%
+        }
+
+        .desc-heading-name a span:nth-child(2) {
+            color: #6c6c6cfa;
+            font-size: 11px
+        }
+
+        h4.desc-heading_foot a {
+            color: var (--cStoreBody);
+            text-decoration: none
+        }
+
+        .a_new_display_toggle {
+            display: none
+        }
+
+        .a_all_integration_information {
+            margin-top: 15px;
+            width: 75%;
+            display: none
+        }
+
+        .a_font_small_chap {
+            font-size: 12px
+        }
+
+        .a_cursor_pointer_a {
+            cursor: pointer
+        }
+
+        .a_right_icon_not_complate {
+            height: 25px;
+            width: 25px;
+            float: right;
+            margin-right: 20px;
+            color: red
+        }
+
+
+
+        .a_hover_text_not_complete {
+            position: absolute;
+            display: none;
+            top: -20px;
+            right: 50px
+        }
+
+        h4.desc-heading_foot {
+            float: left;
+            font-size: 12px;
+            font-weight: 500;
+            margin: -3px 0 0;
+            width: 100%;
+            overflow: hidden
+        }
+
+        .pull-left.icon {
+            border-radius: 50%;
+            overflow: hidden;
+            width: 58px;
+            height: 58px;
+            margin: 4px;
+            z-index: 10;
+            position: relative
+        }
+
+        .alert-widget .icon img {
+            width: 100%
+        }
+
+        .tsp-widget .desc.desc_live_preview {
+            float: left;
+            line-height: 17px;
+            margin-top: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 5px 9px 0 74px;
+            width: 100%;
+            max-width: 318px;
+            height: 70px
+        }
+
+        .alert-widget {
+            font-family: Poppins, sans-serif;
+            border: 0;
+            display: inline-block;
+            padding: 0;
+            margin: 0 auto 20px;
+            background: 0 0;
+            width: 318px;
+            height: 70px !important;
+            position: fixed;
+            left: 80px;
+            bottom: -20px
+        }
+
+        .alert-widget .icon {
+            margin: -2px 15px -2px -2px
+        }
+
+        .alert-widget .icon img {
+            max-width: 64px
+        }
+
+        .alert-widget .desc {
+            float: r;
+            position: relative
+        }
+
+        .alert-widget .desc-heading {
+            line-height: 20px;
+            margin-top: 8px;
+            font-weight: 600;
+            margin-bottom: 0;
+            float: left;
+            width: 100%;
+            border: 0;
+            display: block;
+            font-size: 15px;
+            font-family: Poppins, sans-serif !important
+        }
+
+        .alert-widget .desc-heading small {
+            display: block;
+            color: #000;
+            position: relative;
+            width: 100%;
+            border: 0;
+            font-size: inherit;
+            text-align: left;
+            margin: 0;
+            top: 0;
+            font-weight: 600
+        }
+
+        .alert-widget .desc .time {
+            color: #909090;
+            font-size: 11px;
+            position: relative;
+            margin-top: 10px;
+            float: left;
+            width: auto;
+            font-weight: 300;
+            max-width: 45%
+        }
+
+        .alert-widget-4 {
+            border: 0;
+            padding: 0;
+            background: 0 0
+        }
+
+        .alert-widget-4 .desc {
+            background: #fff;
+            padding: 8px 30px 5px;
+            border-radius: 50px
+        }
+
+        .alert-widget-4 .icon {
+            margin: 6px !important
+        }
+
+        .alert-widget-4 .icon img {
+            max-width: 70px;
+            border-radius: 50%;
+            padding: 0;
+            top: 0
+        }
+
+        .alert-widget-4 span.poweredby {
+            margin-right: 15px
+        }
+
+        .wizard-widgetList.right {
+            width: 360px
+        }
+
+        span.desc-heading-name {
+            display: inline-block !important;
+            overflow: hidden;
+            float: left;
+            width: 100%;
+            font-family: Poppins, sans-serif;
+            font-size: 12px;
+            line-height: 1
+        }
+
+        .desc.desc_live_preview {
+            float: left;
+            line-height: 17px;
+            margin-top: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding: 5px 9px 0 74px;
+            width: 100%;
+            background: #fff
+        }
+
+        .wizard-widgetList li {
+            padding: 0 0 0 20px
+        }
+
+        .tsp-widget span.poweredby {
+            float: right;
+            margin-top: 10px;
+            font-size: 11px;
+            text-decoration: none;
+            color: #9c9c9c;
+            max-width: 45%
+        }
+
+        .tsp-widget span.poweredby i {
+            color: #3498db;
+            margin-right: 3px
+        }
+
+        .tsp-widget span.poweredby a {
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: 3px;
+            color: #3498db
+        }
+
+        .tsp-widget span.poweredby b {
+            color: #222
+        }
+
+        .tsp-widget span.poweredby a:hover {
+            text-decoration: underline
+        }
+
+        .tsp-widget img.live_preview_image {
+            background: #fff;
+            width: 90%;
+            height: 90%
+        }
+
+        .tsp-widget div.tsp-has-close-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: #000;
+            text-shadow: 1px 1px #ddd;
+            cursor: pointer;
+            margin-right: 10px !important;
+            margin-top: 8px !important;
+            cursor: pointer;
+            content: &#34;\00d7&#34;
+        }
+
+        @media screen and (max-width: 568px) {
+            .tsp-widget.alert-widget {
+                bottom: 20px !important;
+                left: 15px !important;
+                margin: 0 !important;
+                position: fixed !important;
+                width: 100% !important;
+                max-width: 320px !important
+            }
+
+            .tsp-widget.alert-widget .desc_live_preview {
+                width: 100% !important;
+                max-width: 100% !important
+            }
+        }
+
+        @media screen and (max-width: 320px) {
+            .tsp-widget.alert-widget {
+                bottom: 0 !important;
+                left: 0 !important;
+                margin: 0 !important;
+                position: fixed !important;
+                width: 100% !important;
+                max-width: 320px !important
+            }
+
+            .tsp-widget.alert-widget .desc_live_preview {
+                width: 100% !important;
+                max-width: 100% !important
+            }
+        }
+
+        .tidio-135wcf7 svg {
+            width: 50px !important;
+            display: none;
+        }
+
+        .rotate-icon svg {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .rotate-icon:hover svg {
+            transform: rotate(90deg);
+            /* Atur sudut rotasi yang diinginkan */
+        }
+
+        #StoreContainer {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            #StoreContainer {
+                display: block;
+            }
+        }
+
+/* ── APK Download Popup ── */
+@keyframes popupIn {
+  from { opacity:0; transform: translateY(28px) scale(0.95); }
+  to   { opacity:1; transform: translateY(0)    scale(1); }
+}
+@keyframes popupRingPulse {
+  0%   { transform: scale(1);    opacity: 0.6; }
+  100% { transform: scale(1.45); opacity: 0; }
 }
 
-body{
-background:#0f172a;
-color:white;
+.popup {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 9999;
+  padding: 0 12px 20px;
+}
+@media (min-width: 480px) {
+  .popup { align-items: center; padding: 0; }
 }
 
-header{
-padding:20px;
-text-align:center;
-background:#111827;
-box-shadow:0 0 15px #00e5ff;
+.popup-card {
+  background: linear-gradient(170deg, #131726 0%, #0c0e18 100%);
+  border: 1px solid rgba(34,211,238,0.18);
+  border-radius: 24px 24px 18px 18px;
+  width: 100%; max-width: 360px;
+  padding: 22px 22px 20px;
+  position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.65),
+              0 0 0 1px rgba(255,255,255,0.04),
+              0 0 60px rgba(34,211,238,0.06);
+  animation: popupIn 0.42s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+@media (min-width: 480px) {
+  .popup-card { border-radius: 24px; }
 }
 
-header h1{
-font-size:35px;
-color:#00e5ff;
+.popup-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: rgba(255,255,255,0.45);
+  font-size: 12px; line-height: 1;
+  transition: background 0.2s, color 0.2s;
+  user-select: none;
+}
+.popup-close:hover { background: rgba(255,255,255,0.14); color: #fff; }
+
+.popup-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(34,211,238,0.1);
+  border: 1px solid rgba(34,211,238,0.22);
+  border-radius: 20px; padding: 3px 11px;
+  font-size: 10px; font-weight: 700; color: #22d3ee;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  margin-bottom: 16px;
+}
+.popup-eyebrow i { font-size: 10px; }
+
+.app-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 16px;
 }
 
-header p{
-color:#ccc;
-margin-top:5px;
+.app-icon-wrap {
+  position: relative; flex-shrink: 0;
+}
+.app-icon-wrap::before,
+.app-icon-wrap::after {
+  content: &#39;&#39;;
+  position: absolute; inset: -4px;
+  border-radius: 20px;
+  border: 2px solid rgba(34,211,238,0.45);
+  animation: popupRingPulse 2.2s ease-out infinite;
+}
+.app-icon-wrap::after { animation-delay: 1.1s; }
+
+.app-icon {
+  width: 64px; height: 64px; border-radius: 16px;
+  border: 2px solid rgba(34,211,238,0.3);
+  box-shadow: 0 0 22px rgba(34,211,238,0.2);
+  display: block; object-fit: cover;
+  position: relative; z-index: 1;
 }
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:20px;
+.app-title {
+  font-size: 16px; font-weight: 800;
+  color: #f1f5f9; letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+.app-dev { font-size: 12px; color: rgba(34,211,238,0.75); margin-bottom: 5px; }
+.versiapk {
+  display: inline-block;
+  font-size: 10px; font-weight: 600; color: #64748b;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 5px; padding: 1px 7px;
 }
 
-.card{
-background:#1e293b;
-border-radius:15px;
-padding:20px;
-margin:15px 0;
-transition:.3s;
+.popup-feats {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.popup-feat {
+  font-size: 11px; font-weight: 600; color: #94a3b8;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 4px 10px;
 }
 
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 0 20px #00e5ff;
+.download-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+  color: #0c1220 !important;
+  padding: 13px 20px; border-radius: 14px;
+  text-decoration: none !important;
+  font-weight: 800; font-size: 14px; letter-spacing: -0.01em;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 22px rgba(34,211,238,0.35);
+  -webkit-tap-highlight-color: transparent;
 }
-
-h2{
-color:#00e5ff;
-margin-bottom:10px;
-}
-
-.btn{
-display:inline-block;
-padding:12px 20px;
-background:#00e5ff;
-color:#000;
-text-decoration:none;
-font-weight:bold;
-border-radius:10px;
-margin-top:15px;
-}
-
-.btn:hover{
-background:white;
-}
-
-footer{
-text-align:center;
-padding:20px;
-margin-top:30px;
-background:#111827;
-color:#aaa;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-<h1>RanzXiter Store</h1>
-<p>Top Up Game • Panel • Jasa Digital</p>
-</header>
-
-<div class="container">
-
-<div class="card">
-<h2>🎮 Top Up Game</h2>
-<p>
-• Free Fire<br>
-• Mobile Legends<br>
-• PUBG Mobile<br>
-• Honor of Kings
-</p>
-<a href="https://wa.me/6283176700783" class="btn">Pesan Sekarang</a>
-</div>
-
-<div class="card">
-<h2>🖥️ Panel Pterodactyl</h2>
-<p>
-RAM Unlimited<br>
-CPU Unlimited<br>
-Garansi Aktif
-</p>
-<a href="https://wa.me/6281234567890" class="btn">Beli Panel</a>
-</div>
-
-<div class="card">
-<h2>💳 Pembayaran</h2>
-<p>
-✅ DANA<br>
-✅ QRIS<br>
-✅ GoPay
-</p>
-</div>
-
-</div>
-
-<footer>
-© 2026 RanzXiter Store | All Rights Reserved
-</footer>
-
-</body>
-</html>
+.download-btn:hover  { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(34,211,238,0.5); color: #0c1220 !important; }
+.download-btn:active { transform: scale(0.98); }
+.download-btn:focus  { outline: none; color: #0c1220 !important; }
+.download-btn:visited { color: #0c1220 !important; }
+.download-btn i { font-size: 15px; }
+    </style>
+    <link rel="preload" as="style" href="https://fixaonly.com/build/assets/app-BHcGrEjS.css" />
+    <link rel="modulepreload" href="https://fixaonly.com/build/assets/app-DjV9WB2j.js" />
+    <link rel="stylesheet" href="https://fixaonly.com/build/assets/app-BHcGrEjS.css" data-navigate-track="reload" />
+    <script type="module" src="https://fixaonly.com/build/assets/app-DjV9WB2j.js" data-navigate-track="reload">
+    </script>
+  </head>
+  <body class="antialiased">
+    <script type="text/javascript">
+      const Ziggy={&#34;url&#34;:&#34;https:\/\/fixaonly.com&#34;,&#34;port&#34;:null,&#34;defaults&#34;:{},&#34;routes&#34;:{&#34;auth.google&#34;:{&#34;uri&#34;:&#34;auth\/google&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;]},&#34;auth.google.callback&#34;:{&#34;uri&#34;:&#34;google\/callback&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;]},&#34;auth.logout&#34;:{&#34;uri&#34;:&#34;auth\/logout&#34;,&#34;methods&#34;:[&#34;POST&#34;]},&#34;user.dashboard&#34;:{&#34;uri&#34;:&#34;dashboard&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;]},&#34;home.invoice&#34;:{&#34;uri&#34;:&#34;invoice\/{invoice_id}&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;],&#34;parameters&#34;:[&#34;invoice_id&#34;]},&#34;home.batch-invoice&#34;:{&#34;uri&#34;:&#34;batch-invoice\/{batch_id}&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;],&#34;parameters&#34;:[&#34;batch_id&#34;]},&#34;home.cart-checkout&#34;:{&#34;uri&#34;:&#34;cart-checkout&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;]},&#34;home.index&#34;:{&#34;uri&#34;:&#34;\/&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;]},&#34;home.product&#34;:{&#34;uri&#34;:&#34;product\/{product}&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;],&#34;parameters&#34;:[&#34;product&#34;],&#34;bindings&#34;:{&#34;product&#34;:&#34;slug&#34;}},&#34;home.daftar-harga&#34;:{&#34;uri&#34;:&#34;page\/daftar-harga&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;]},&#34;home.lacak-transaksi&#34;:{&#34;uri&#34;:&#34;page\/lacak-transaksi&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;]},&#34;home.kalkulator&#34;:{&#34;uri&#34;:&#34;page\/kalkulator&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;]},&#34;home.reset-member&#34;:{&#34;uri&#34;:&#34;page\/reset-member&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;]},&#34;home.feedback&#34;:{&#34;uri&#34;:&#34;page\/feedback&#34;,&#34;methods&#34;:[&#34;GET&#34;,&#34;HEAD&#34;]},&#34;api.data-footer&#34;:{&#34;uri&#34;:&#34;api\/data-footer&#34;,&#34;methods&#34;:[&#34;POST&#34;]},&#34;api.search&#34;:{&#34;uri&#34;:&#34;api\/search&#34;,&#34;methods&#34;:[&#34;POST&#34;]},&#34;api.select-denom&#34;:{&#34;uri&#34;:&#34;api\/select-denom&#34;,&#34;methods&#34;:[&#34;POST&#34;]},&#34;api.load-more-feedback&#34;:{&#34;uri&#34;:&#34;api\/load-more-feedback&#34;,&#34;methods&#34;:[&#34;POST&#34;]},&#34;api.apply-voucher&#34;:{&#34;uri&#34;:&#34;api\/apply-voucher&#34;,&#34;methods&#34;:[&#34;POST&#34;]},&#34;api.create-order&#34;:{&#34;uri&#34;:&#34;api\/create-order&#34;,&#34;methods&#34;:[&#34;POST&#34;]},&#34;api.cart-denoms&#34;:{&#34;uri&#34;:&#34;api\/cart-denoms&#34;,&#34;methods&#34;:[&#34;POST&#34;]},&#34;api.cart-checkout&#34;:{&#34;uri&#34;:&#34;api\/cart-checkout&#34;,&#34;methods&#34;:[&#34;POST&#34;]},&#34;api.submit-feedback&#34;:{&#34;uri&#34;:&#34;api\/submit-feedback&#34;,&#34;methods&#34;:[&#34;POST&#34;]},&#34;api.cek-status&#34;:{&#34;uri&#34;:&#34;api\/check-status&#34;,&#34;method
