@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RanzMods Tools</title>
+<style>
+  body { background: #0a0a0a; color: #00ff88; font-family: 'Consolas', monospace; padding: 20px; }
+.container { max-width: 1000px; margin: auto; }
+  h1 { text-align: center; color: #00aaff; text-shadow: 0 0 10px #00aaff; }
+  details { background: #111; border: 1px solid #00ff88; border-radius: 8px; margin: 10px 0; padding: 10px; }
+  summary { cursor: pointer; font-weight: bold; color: #00aaff; font-size: 18px; }
+  input, button { background: #000; color: #00ff88; border: 1px solid #00ff88; padding: 8px; margin: 5px; border-radius: 5px; font-family: 'Consolas', monospace; }
+  button { cursor: pointer; background: #00ff88; color: #000; font-weight: bold; transition: 0.2s; }
+  button:hover { background: #00cc66; box-shadow: 0 0 10px #00ff88; }
+.key-list { background: #000; border: 1px dashed #00ff88; padding: 10px; max-height: 350px; overflow-y: auto; }
+.key-item { display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px solid #222; }
+.active { color: #00ff88; }.inactive { color: #ff0044; text-decoration: line-through; }
+  canvas { background: #111; border: 1px solid #00ff88; border-radius: 8px; width: 100%; height: 250px; margin-top:10px; }
+.copy-btn { background: #0044ff; color: white; padding: 4px 8px; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>&lt;RanzMods Tools /&gt;</h1>
+  <p style="text-align:center; color:#aaa;">Key Generator + Grafik Penjualan</p>
+
+  <details open>
+    <summary>[1] GENERATE KEY</summary>
+    <p>Format: <b>HZ-XXXX-XXXX</b> | Contoh: HZ-EOEK-IE</p>
+    <label>Jumlah Key: </label><input type="number" id="jumlah" value="10" min="1">
+    <label>Durasi Hari: </label><input type="number" id="hari" value="30" min="1">
+    <label>Jumlah Device: </label><input type="number" id="device" value="3" min="1">
+    <br>
+    <button onclick="generateKey()">[ GENERATE ]</button>
+    <button onclick="downloadKeys()">[ DOWNLOAD.TXT ]</button>
+    <button onclick="hapusSemua()">[ HAPUS SEMUA ]</button>
+  </details>
+
+  <details open>
+    <summary>[2] DAFTAR KEY</summary>
+    <div class="key-list" id="keyList">Belum ada key. Silahkan generate dulu.</div>
+  </details>
+
+  <details open>
+    <summary>[3] GRAFIK PENJUALAN</summary>
+    <button onclick="gantiGrafik('1h')">1 Hari</button>
+    <button onclick="gantiGrafik('1m')">1 Minggu</button>
+    <button onclick="gantiGrafik('1b')">1 Bulan</button>
+    <canvas id="grafik"></canvas>
+  </details>
+</div>
+
+<script>
+let keys = JSON.parse(localStorage.getItem('ranzKeys')) || [];
+let dataGrafik = {
+  '1h': [5,8,12,7,15,20,18,22,25,19,14,16],
+  '1m': [20,35,40,55,60,70,80],
+  '1b': [80,120,150,200]
+};
+
+function saveLocal(){
+  localStorage.setItem('ranzKeys', JSON.stringify(keys));
+}
+
+function random4() {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let res = '';
+  for(let i=0; i<4; i++) res += chars.charAt(Math.floor(Math.random() * chars.length));
+  return res;
+}
+
+function generateKey() {
+  let jumlah = parseInt(document.getElementById('jumlah').value);
+  let hari = parseInt(document.getElementById('hari').value);
+  let device = parseInt(document.getElementById('device').value);
+
+  for(let i=0; i<jumlah; i++){
+    let grup1 = random4();
+    let grup2 = random4();
+    let key = `HZ-${grup1}-${grup2}`;
+    keys.push({ key: key, hari: hari, device: device, status: true, tanggal: new Date().toLocaleDateString() });
+  }
+  saveLocal();
+  tampilkanKey();
+}
+
+function tampilkanKey() {
+  let html = '';
+  keys.forEach((k, i) => {
+    html += `<div class="key-item">
+      <span class="${k.status? 'active' : 'inactive'}">${k.key} | ${k.hari}H | ${k.device}D | ${k.tanggal}</span>
+      <div>
+        <button class="copy-btn" onclick="copyKey('${k.key}')">COPY</button>
+        <button onclick="toggleKey(${i})">${k.status? 'NON-AKTIF' : 'AKTIFKAN'}</button>
+      </div>
+    </div>`;
+  });
+  document.getElementById('keyList').innerHTML = html || 'Belum ada key';
+}
+
+function toggleKey(i) {
+  keys[i].status =!keys[i].status;
+  saveLocal();
+  tampilkanKey();
+}
+
+function hapusSemua(){
+  if(confirm('Yakin hapus semua key?')){
+    keys = [];
+    saveLocal();
+    tampilkanKey();
+  }
+}
+
+function copyKey(text){
+  navigator.clipboard.writeText(text);
+  alert('Key disalin: ' + text);
+}
+
+function downloadKeys() {
+  let text = keys.map(k => `${k.key}|${k.hari}H|${k.device}D|${k.status? 'AKTIF' : 'NONAKTIF'}|${k.tanggal}`).join('\n');
+  let blob = new Blob([text], {type: 'text/plain'});
+  let a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'RanzMods_Keys.txt';
+  a.click();
+}
+
+// Grafik
+const ctx = document.getElementById('grafik').getContext('2d');
+function gantiGrafik(type){
+  ctx.clearRect(0,0,1000,250);
+  ctx.strokeStyle = '#00ff88'; ctx.fillStyle = '#00ff88'; ctx.lineWidth = 2;
+  ctx.beginPath();
+  let data = dataGrafik[type];
+  data.forEach((v,i) => {
+    let x = i * (900/data.length) + 50;
+    let y = 250 - v * 1.1;
+    if(i==0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    ctx.fillRect(x-2, y-2, 4, 4); // titik
+    ctx.fillText(v, x-8, y-8);
+  });
+  ctx.stroke();
+}
+gantiGrafik('1m');
+tampilkanKey(); // load data saat buka
+</script>
+
+</body>
+</html>
