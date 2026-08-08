@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RANZ MODS - Celengan Code</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+  body { 
+    font-family: 'Fira Code', monospace;
+    background: #0d1117; 
+    color: #c9d1d9; 
+    margin: 0; padding: 15px; font-size: 12px;
+  }
+  .header { text-align: center; font-size: 16px; color: #a855f7; margin-bottom: 15px; }
+  
+  .card { 
+    background: #161b22; 
+    padding: 15px; 
+    border-radius: 10px; 
+    margin-bottom: 12px; 
+    border: 1px solid #30363d; 
+  }
+
+  /* WARNA KODE */
+  .tag { color: #ff7b72; }
+  .attr { color: #79c0ff; }
+  .value { color: #a5d6ff; }
+  .number { color: #79c0ff; }
+  .comment { color: #8b949e; }
+  .green { color: #3fb950; }
+  .red { color: #f85149; }
+  .purple { color: #d2a8ff; }
+  .yellow { color: #d29922; }
+
+  .target-box { border-left: 3px solid #a855f7; padding-left: 10px; margin: 10px 0; }
+  .progress { height: 8px; background: #21262d; border-radius: 6px; overflow: hidden; }
+  .bar { height: 100%; background: linear-gradient(90deg,#3fb950,#1f6feb); transition: 0.8s; }
+  
+  button { 
+    padding: 10px; border: none; border-radius: 8px; 
+    font-family: 'Fira Code'; font-size: 12px; font-weight: 500; cursor: pointer;
+  }
+  .btn-tambah { background: #238636; color: white; width: 49%; }
+  .btn-kurangi { background: #da3633; color: white; width: 49%; }
+  .btn-full { background: #a855f7; color: white; width: 100%; margin-top: 8px; }
+  
+  .popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 99; }
+  .popup-content { background: #161b22; padding: 20px; border-radius: 10px; width: 90%; border: 1px solid #30363d; }
+  input, select { 
+    width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; 
+    border: 1px solid #30363d; background: #0d1117; color: #c9d1d9; 
+    font-family: 'Fira Code'; font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header"><span class="tag">&lt;RANZ_CELENGAN v2.0&gt;</span></div>
+
+<!-- BUAT TARGET -->
+<div class="card">
+  <div class="tag">&lt;BuatTarget&gt;</div>
+  <select id="kategori">
+    <option>💻 PC Gaming</option>
+    <option>📱 HP</option>
+    <option>🏍️ Motor</option>
+    <option>🚗 Mobil</option>
+    <option>🎧 Aksesoris</option>
+  </select>
+  <input type="text" id="namaTarget" placeholder='<nama target="PC RANZ">'>
+  <input type="number" id="targetNominal" placeholder='<target nominal="10000000">'>
+  <button class="btn-full" onclick="tambahTarget()">BuatTarget()</button>
+  <div class="tag">&lt;/BuatTarget&gt;</div>
+</div>
+
+<!-- LIST TARGET -->
+<div id="listTarget"></div>
+
+<!-- ALARM -->
+<div class="card">
+  <div class="tag">&lt;Alarm&gt;</div>
+  <input type="time" id="jamAlarm">
+  <button class="btn-full" onclick="setAlarm()">AktifkanAlarm()</button>
+  <div id="statusAlarm" class="comment">// Status: Belum diset</div>
+  <div class="tag">&lt;/Alarm&gt;</div>
+</div>
+
+<!-- POPUP CATAT -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <div class="header"><span class="tag">&lt;CatatTabungan&gt;</span></div>
+    <input type="date" id="tanggal">
+    <input type="number" id="nominal" placeholder="<nominal>">
+    <input type="text" id="keterangan" placeholder="<keterangan>">
+    <button class="btn-full" onclick="simpan()">Simpan()</button>
+    <button onclick="tutupPopup()" style="width:100%; background:#555; margin-top:8px">Batal()</button>
+  </div>
+</div>
+
+<script>
+let targets = JSON.parse(localStorage.getItem('targetsRanz')) || [];
+let riwayat = JSON.parse(localStorage.getItem('riwayatRanz')) || [];
+let alarmJam = localStorage.getItem('alarmJamRanz');
+let mode = 'tambah';
+let idAktif = null;
+
+document.getElementById('tanggal').valueAsDate = new Date();
+tampilkan();
+
+function tambahTarget() {
+  let kat = document.getElementById('kategori').value;
+  let nama = document.getElementById('namaTarget').value;
+  let target = parseInt(document.getElementById('targetNominal').value);
+  if(!nama ||!target) return alert('Lengkapi!');
+  targets.push({id: Date.now(), kat, nama, target, terkumpul: 0});
+  localStorage.setItem('targetsRanz', JSON.stringify(targets));
+  document.getElementById('namaTarget').value = '';
+  tampilkan();
+}
+
+function bukaPopup(m, id) { 
+  mode = m; 
+  idAktif = id;
+  document.getElementById('popup').style.display = 'flex'; 
+}
+function tutupPopup() { document.getElementById('popup').style.display = 'none'; }
+
+function simpan() {
+  let tgl = document.getElementById('tanggal').value;
+  let nom = parseInt(document.getElementById('nominal').value);
+  let ket = document.getElementById('keterangan').value;
+  if(!tgl ||!nom) return alert('Lengkapi!');
+
+  let t = targets.find(x => x.id == idAktif);
+  if(mode == 'tambah') t.terkumpul += nom;
+  if(mode == 'kurangi') t.terkumpul -= nom;
+
+  riwayat.push({tgl, idTarget: idAktif, nom: mode=='tambah'? nom : -nom, ket});
+  localStorage.setItem('riwayatRanz', JSON.stringify(riwayat));
+  localStorage.setItem('targetsRanz', JSON.stringify(targets));
+  tutupPopup(); tampilkan();
+}
+
+function tampilkan() {
+  // LIST TARGET
+  let html = targets.map(t => {
+    let kurang = t.target - t.terkumpul;
+    let persen = Math.max(0, Math.min(100, (t.terkumpul / t.target) * 100));
+    let sisaMinggu = Math.ceil(kurang / 15000);
+    return `<div class="card target-box">
+      <div><span class="tag">&lt;h1&gt;</span>${t.kat} ${t.nama}<span class="tag">&lt;/h1&gt;</span></div>
+      <div class="target-uang green">Rp <span class="number">${t.target.toLocaleString()}</span></div>
+      <div class="comment">// Rp 15.000 Per Minggu</div>
+      
+      <div style="display:flex; justify-content:space-between; margin:8px 0;">
+        <div><span class="purple">Terkumpul:</span> <span class="green">Rp ${t.terkumpul.toLocaleString()}</span></div>
+        <div><span class="purple">Kurang:</span> <span class="red">Rp ${kurang.toLocaleString()}</span></div>
+      </div>
+      <div class="comment">// Estimasi: ${sisaMinggu} Minggu Lagi</div>
+
+      <div class="progress"><div class="bar" style="width:${persen}%"></div></div>
+      <div style="text-align:right" class="comment">// ${persen.toFixed(3)}%</div>
+
+      <div style="display:flex; gap:8px; margin-top:10px;">
+        <button class="btn-tambah" onclick="bukaPopup('tambah',${t.id})">+ Tambah()</button>
+        <button class="btn-kurangi" onclick="bukaPopup('kurangi',${t.id})">- Kurangi()</button>
+      </div>
+
+      <div class="tag" style="margin-top:10px">&lt;Riwayat&gt;</div>
+      ${riwayat.filter(r=>r.idTarget==t.id).slice().reverse().map(r=> 
+        `<div><span class="comment">// ${r.tgl}</span> <span class="${r.nom>0?'green':'red'}">${r.nom>0?'+':'-'}${Math.abs(r.nom).toLocaleString()}</span> <span class="yellow">${r.ket}</span></div>`
+      ).join('')}
+      <div class="tag">&lt;/Riwayat&gt;</div>
+    </div>`;
+  }).join('');
+  document.getElementById('listTarget').innerHTML = html || '<div class="card comment">// Belum ada target. Buat dulu!</div>';
+
+  if(alarmJam) document.getElementById('statusAlarm').innerText = '// Status: Aktif jam ' + alarmJam;
+}
+
+function setAlarm() {
+  alarmJam = document.getElementById('jamAlarm').value;
+  if(!alarmJam) return alert('Pilih jam!');
+  localStorage.setItem('alarmJamRanz', alarmJam);
+  alert('Alarm aktif jam '+alarmJam);
+}
+// CEK ALARM
