@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HELZ OWNER | Generator Key Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; 
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace; 
+            letter-spacing: 0.5px; }
+
+        :root {
+            --utama: #7928ca;
+            --kedua: #ff0080;
+            --biru-cerah: #00d9ff;
+            --hijau: #00ffa3;
+            --kuning: #ffd700;
+            --merah: #ff2222;
+            --ungu-gelap: #1a0f2e;
+            --hitam-kosmik: #05050f;
+            --abu-kode: #b8c2cc;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #241846 0%, #120b29 40%, var(--hitam-kosmik) 100%);
+            color: var(--abu-kode);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .bintang {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: kedipLembut 5s infinite ease-in-out;
+            pointer-events: none;
+        }
+        @keyframes kedipLembut {
+            0%,100% {opacity:0.15; transform:scale(0.6);}
+            50% {opacity:0.9; transform:scale(1.05);}
+        }
+
+        .glass-mewah {
+            background: rgba(10, 10, 30, 0.6);
+            backdrop-filter: blur(22px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 
+                inset 0 1px 1px rgba(255,255,255,0.1),
+                0 10px 30px rgba(121, 40, 202, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-mewah::before{
+            content:""; position:absolute; top:0; left:-100%;
+            width:100%; height:2px;
+            background: linear-gradient(90deg, transparent, var(--biru-cerah), var(--kedua), transparent);
+            animation: garisJalan 3.5s linear infinite;
+        }
+        @keyframes garisJalan{0%{left:-100%;}100%{left:100%;}}
+
+        .teks-kode-berkilau{
+            background: linear-gradient(90deg, var(--biru-cerah), #4facfe, var(--utama), var(--kedua), var(--hijau));
+            background-size:400% 400%;
+            animation: warnaJalan 4s linear infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight:bold;
+            letter-spacing:1px;
+        }
+        @keyframes warnaJalan{0%{background-position:0% 50%;}100%{background-position:400% 50%;}}
+
+        .btn-mewah{
+            padding:10px 14px; border-radius:8px; border:none; 
+            font-weight:bold; font-size:13px;
+            cursor:pointer; transition:all 0.3s ease; 
+            position:relative; overflow:hidden;
+        }
+        .btn-hijau{background:linear-gradient(90deg,#009678,var(--hijau)); color:#000;}
+        .btn-hijau:hover{transform:scale(1.05);}
+        .btn-hijau:disabled{opacity:0.4; cursor:not-allowed; transform:none;}
+        .btn-merah{background:linear-gradient(90deg,#992222,var(--merah)); color:white;}
+        .btn-merah:hover{transform:scale(1.05);}
+        .btn-biru{background:linear-gradient(90deg,#1565c0,var(--biru-cerah)); color:white;}
+        .btn-biru:hover{transform:scale(1.05);}
+        .btn-hapus-semua{background:linear-gradient(90deg,#600,#b00); color:white; width:100%; padding:12px; border-radius:10px; margin-top:10px;}
+
+        .input-mewah{
+            width:100%; padding:12px 15px; border-radius:8px; border:1px solid rgba(0,217,255,0.25);
+            background:rgba(0,0,0,0.5); color:#e2e8f0; font-size:14px; outline:none;
+        }
+        .input-mewah:focus{border-color:var(--biru-cerah);}
+
+        .key-item{
+            background:rgba(20, 20, 50, 0.5); border-radius:12px; padding:15px; margin:10px 0;
+            border-left:4px solid; transition:all 0.3s ease;
+        }
+        .aktif{border-color:var(--hijau); background:rgba(0,255,163,0.05);}
+        .nonaktif{border-color:var(--merah); background:rgba(255,34,34,0.06);}
+        .terpakai{border-color:var(--biru-cerah); background:rgba(0,217,255,0.05);}
+        .habis{border-color:#ff0000; background:rgba(255,0,0,0.08); animation: kedipMerah 1.5s infinite alternate;}
+        @keyframes kedipMerah{from{opacity:0.8;}to{opacity:1;}}
+
+        .waktu-teks{font-size:15px; font-weight:bold; letter-spacing:1px;}
+
+        /* 📊 GRAFIK NAIK TURUN */
+        .grafik-wadah{
+            background:rgba(10,15,30,0.7);
+            border-radius:12px;
+            padding:15px;
+            margin-bottom:20px;
+            border:1px solid rgba(0,255,163,0.2);
+        }
+        .garis-grafik{
+            display:flex;
+            align-items:flex-end;
+            justify-content:flex-start;
+            gap:6px;
+            height:120px;
+            padding:10px 5px;
+            border-bottom:2px solid rgba(0,217,255,0.3);
+            border-left:2px solid rgba(0,217,255,0.3);
+            position:relative;
+        }
+        .batang{
+            width:18px;
+            background:linear-gradient(180deg,var(--hijau),var(--biru-cerah));
+            border-radius:4px 4px 0 0;
+            transition:all 0.5s cubic-bezier(0.4,0,0.2,1);
+            box-shadow:0 0 8px rgba(0,255,163,0.3);
+            min-height:4px;
+        }
+        .batang.nol{background:linear-gradient(180deg,#333,#444); box-shadow:none; opacity:0.4;}
+        .info-grafik{
+            display:flex;
+            justify-content:space-between;
+            margin-top:10px;
+            font-size:13px;
+        }
+        .naik{color:var(--hijau);}
+        .turun{color:var(--merah);}
+
+        #layarLogin {
+            display: flex; position: fixed; inset:0; z-index:99;
+            background: rgba(5,5,15,0.92);
+        }
+        #layarLogin.sembunyi { display:none; }
+        #layarUtama { display:none; padding:20px; }
+        #layarUtama.muncul { display:block; }
+
+        .daftar-key::-webkit-scrollbar{width:6px;}
+        .daftar-key::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--utama),var(--kedua)); border-radius:10px;}
+    </style>
+</head>
+<body>
+    <script>
+        for(let i=0; i<80; i++){
+            let b = document.createElement('div');
+            b.style.cssText = 'position:absolute; background:#fff; border-radius:50%; animation:kedipLembut 5s infinite; pointer-events:none;';
+            b.style.left = Math.random()*100+'vw';
+            b.style.top = Math.random()*100+'vh';
+            b.style.width = b.style.height = (1.5+Math.random()*2)+'px';
+            document.body.appendChild(b);
+        }
+    </script>
+
+    <div id="layarLogin">
+        <div class="glass-mewah w-full max-w-md p-8 text-center m-auto">
+            <i class="fa fa-code text-5xl text-purple-400 mb-4"></i>
+            <h2 class="text-4xl teks-kode-berkilau mb-3">HELZ_OWNER</h2>
+            <p class="text-cyan-300/70 mb-8 text-sm">// SYSTEM_AUTHORIZED_ACCESS //</p>
+            <div class="text-left mb-4">
+                <label class="text-cyan-300/80 mb-2 block text-sm">Masukkan Username</label>
+                <input type="text" id="user" class="input-mewah" placeholder="Ketik username disini">
+            </div>
+            <div class="text-left mb-6">
+                <label class="text-cyan-300/80 mb-2 block text-sm">Masukkan Password</label>
+                <input type="password" id="pass" class="input-mewah" placeholder="Ketik sandi disini">
+            </div>
+            <button id="tombolMasuk" class="btn-mewah btn-hijau w-full py-3 text-lg">>> MASUK SISTEM</button>
+            <p id="pesanSalah" class="text-red-400 mt-3 hidden">❌ Username atau Password salah!</p>
+        </div>
+    </div>
+
+    <div id="layarUtama">
+        <div class="text-center mb-6 mt-4">
+            <h1 class="text-3xl teks-kode-berkilau mb-2">🔐 GENERATOR KEY</h1>
+            <p class="text-cyan-300/70 text-sm">// FORMAT: HELZ-XXXX-XXXX //</p>
+        </div>
+
+        <!-- 📊 GRAFIK NAIK TURUN PENJUALAN KEY -->
+        <div class="glass-mewah grafik-wadah">
+            <h3 class="text-center text-yellow-400 text-sm mb-3">📊 GRAFIK PENJUALAN KEY</h3>
+            <div class="garis-grafik" id="garisGrafik">
+                <!-- Otomatis muncul batang tiap generate -->
+            </div>
+            <div class="info-grafik">
+                <span>Total: <span id="totalKey">0</span> Key</span>
+                <span class="naik" id="infoNaik">↑ +0</span>
+                <span class="turun" id="infoTurun">↓ -0</span>
+            </div>
+        </div>
+
+        <div class="glass-mewah p-6 mb-6">
+            <h2 class="text-xl font-bold text-center text-cyan-400 mb-5">⚙️ BUAT KEY BARU</h2>
+            <div class="grid grid-cols-3 gap-4 mb-5">
+                <div>
+                    <label class="text-cyan-300/80 mb-1 block text-sm">JUMLAH</label>
+                    <input type="number" id="jumlahKey" min="1" max="99" value="1" class="input-mewah">
+                </div>
+                <div>
+                    <label class="text-cyan-300/80 mb-1 block text-sm">MASA (HARI)</label>
+                    <input type="number" id="hariKey" min="1" value="7" class="input-mewah">
+                </div>
+                <div>
+                    <label class="text-cyan-300/80 mb-1 block text-sm">BATAS HP</label>
+                    <input type="number" id="batasHp" min="1" value="1" class="input-mewah">
+                </div>
+            </div>
+            <button id="buatKey" class="btn-mewah btn-hijau w-full py-3">>> GENERATE KEY</button>
+        </div>
+
+        <div class="glass-mewah p-6">
+            <h2 class="text-xl font-bold text-center text-yellow-400 mb-5">📋 DAFTAR KUNCI</h2>
+            <div id="daftarKey" class="daftar-key max-h-[60vh] overflow-y-auto">
+                <div class="text-center text-gray-400/60 py-12">
+                    <i class="fa fa-shield text-4xl mb-3 text-indigo-400/70"></i>
+                    <p>// BELUM ADA KEY //</p>
+                </div>
+            </div>
+            <button id="hapusSemua" class="btn-hapus-semua">>> HAPUS SEMUA KEY</button>
+        </div>
+    </div>
+
+    <script>
+        // 🔐 DATA LOGIN TERSEMBUNYI
+        const USER_VALID = "HELZXITER";
+        const PASS_VALID = "HELZOWNER";
+
+        let daftarKey = [];
+        let riwayatJumlah = []; // 📊 Simpan riwayat jumlah key buat grafik
+        let totalNaik = 0;
+        let totalTurun = 0;
+
+        // 🔑 BUAT FORMAT KEY: HELZ-XXXX-XXXX
+        function buatKodeKey(){
+            let acak = () => Math.random().toString(36).slice(2,6).toUpperCase();
+            return `HELZ-${acak()}-${acak()}`;
+        }
+
+        // ⏳ FORMAT WAKTU: HARI : JAM : MENIT : DETIK
+        function formatWaktu(detik){
+            if(detik <= 0) return {teks:"⏳ KADALUWARSA", habis:true};
+            let h = Math.floor(detik / 86400);
+            let j = Math.floor((detik % 86400) / 3600);
+            let m = Math.floor((detik % 3600) / 60);
+            let d = detik % 60;
+            let f = n => n < 10 ? '0' + n : n;
+            return {teks:`⏳ ${f(h)} : ${f(j)} : ${f(m)} : ${f(d)}`, habis:false};
+        }
+
+        // 📊 UPDATE GRAFIK NAIK TURUN
+        function updateGrafik(){
+            let wadah = document.getElementById('garisGrafik');
+            wadah.innerHTML = '';
+            let maks = Math.max(...riwayatJumlah, 1);
+
+            riwayatJumlah.forEach(jml=>{
+                let tinggi = Math.max(6, (jml / maks) * 100);
+                let b = document.createElement('div');
+                b.className = 'batang' + (jml===0?' nol':'');
+                b.style.height = tinggi + '%';
+                wadah.appendChild(b);
+            });
+
+            document.getElementById('totalKey').textContent = daftarKey.length;
+            document.getElementById('infoNaik').textContent = '↑ +' + totalNaik;
+            document.getElementById('infoTurun').textContent = '↓ -' + totalTurun;
+        }
+
+        // 📋 TAMPILKAN DAFTAR KEY
+        function tampilkan(){
+            let wadah = document.getElementById('daftarKey');
+            if(daftarKey.length === 0){
+                wadah.innerHTML = `<div class="text-center text-gray-400/60 py-12"><i class="fa fa-shield text-4xl mb-3 text-indigo-400/70"></i><p>// BELUM ADA KEY //</p></div>`;
+                updateGrafik();
+                return;
+            }
+            wadah.innerHTML = '';
+            daftarKey.forEach((key, idx)=>{
+                let waktu = formatWaktu(key.sisa);
+                let status, kelas;
+
+                if(waktu.habis){
+                    kelas = 'habis';
+                    status = '❌ KADALUWARSA';
+                } else if(key.pakai >= key.batas){
+                    kelas = 'terpakai';
+                    status = '🔵 TERKUNCI HP';
+                } else if(key.aktif){
+                    kelas = 'aktif';
+                    status = '✅ SEDANG BERJALAN';
+                } else {
+                    kelas = 'nonaktif';
+                    status = '🔴 DIMATIKAN';
+                }
+
+                let div = document.createElement('div');
+                div.className = `key-item ${kelas}`;
+                div.innerHTML = `
+                    <div class="waktu-teks mb-2">${waktu.teks}</div>
+                    <p class="mb-3 text-sm">STATUS: ${status} | PAKAI: ${key.pakai}/${key.batas}</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <button class="btn-mewah btn-hijau tombolNyalakan" data-idx="${idx}" ${waktu.habis?'disabled':''}>▶ NYALAKAN</button>
+                        <button class="btn-mewah btn-merah tombolMatikan" data-idx="${idx}" ${waktu.habis?'disabled':''}>⏹ MATIKAN</button>
+                        <button class="btn-mewah btn-biru tombolSalin" data-key="${key.kode}"><i class="fa fa-copy"></i> SALIN</button>
+                        <button class="btn-mewah btn-merah tombolHapus" data-idx="${idx}"><i class="fa fa-trash"></i> HAPUS</button>
+                    </div>
+                `;
+                wadah.appendChild(div);
+            });
+
+            // ⏹ MATIKAN KEY
+            document.querySelectorAll('.tombolMatikan').forEach(btn=>{
+                btn.onclick = ()=>{
+                    let i = parseInt(btn.dataset.idx);
+                    if(!daftarKey[i].aktif) return;
+                    daftarKey[i].aktif = false;
+                    tampilkan();
+                };
+            });
+
+            // ▶ NYALAKAN KEY
+            document.querySelectorAll('.tombolNyalakan').forEach(btn=>{
+                btn.onclick = ()=>{
+                    let i = parseInt(btn.dataset.idx);
+                    if(daftarKey[i].sisa <= 0) return alert('❌ WAKTU SUDAH HABIS!');
+                    daftarKey[i].aktif = true;
+                    tampilkan();
+                };
+            });
+
+            // 📋 SALIN KEY
+            document.querySelectorAll('.tombolSalin').forEach(btn=>{
+                btn.onclick = async ()=>{
+                    let kode = btn.dataset.key;
+                    try{await navigator.clipboard.writeText(kode); alert(`✅ BERHASIL SALIN:\n${kode}`);}
+                    catch{let t=document.createElement('textarea');t.value=kode;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);}
+                };
+            });
+
+            // 🗑 HAPUS 1 KEY → GRAFIK TURUN
+            document.querySelectorAll('.tombolHapus').forEach(btn=>{
+                btn.onclick = ()=>{
+                    if(confirm('❓ YAKIN HAPUS KEY INI?')){
+                        daftarKey.splice(parseInt(btn.dataset.idx), 1);
+                        totalTurun++;
+                        riwayatJumlah.push(daftarKey.length);
+                        tampilkan();
+                    }
+                };
+            });
+
+            updateGrafik();
+        }
+
+        // ⏱ HITUNG MUNDUR: HANYA KEY YANG AKTIF YANG BERJALAN
+        setInterval(()=>{
+            let adaBerjalan = false;
+            daftarKey.forEach(key=>{
+                if(key.aktif && key.sisa > 0){
+                    key.sisa--;
+                    adaBerjalan = true;
+                }
+            });
+            if(adaBerjalan) tampilkan();
+        }, 1000);
+
+        // 🚀 GENERATE KEY → GRAFIK NAIK
+        document.getElementById('buatKey').onclick = ()=>{
+            let jml = parseInt(document.getElementById('jumlahKey').value) || 1;
+            let hari = parseInt(document.getElementById('hariKey').value) || 1;
+            let batas = parseInt(document.getElementById('batasHp').value) || 1;
+            let detik = hari * 86400;
+
+            for(let i=0; i<jml; i++){
+                daftarKey.push({
+                    kode: buatKodeKey(),
+                    sisa: detik,
+                    batas: batas,
+                    pakai: 0,
+                    aktif: true
+                });
+            }
+            totalNaik += jml;
+            riwayatJumlah.push(daftarKey.length);
+            tampilkan();
+            alert(`✅ BERHASIL BUAT ${jml} KEY!\n📊 GRAFIK NAIK OTOMATIS!`);
+        };
+
+        // 🗑 HAPUS SEMUA → GRAFIK TURUN NOL
+        document.getElementById('hapusSemua').onclick = ()=>{
+            if(confirm('❓ YAKIN HAPUS SEMUA KEY?')){
+                daftarKey.forEach(()=> totalTurun++);
+                daftarKey = [];
+                riwayatJumlah.push(0);
+                tampilkan();
+                alert('✅ SEMUA KEY DIHAPUS!\n📊 GRAFIK KEMBALI NOL!');
+            }
+        };
+
+        // 🔐 LOGIN
+        document.getElementById('tombolMasuk').onclick = ()=>{
+            let u = document.getElementById('user').value.trim();
+            let p = document.getElementById('pass').value.trim();
+            if(u === USER_VALID && p === PASS_VALID){
+                document.getElementById('layarLogin').classList.add('sembunyi');
+                document.getElementById('layarUtama').classList.add('muncul');
+            }else{
+                let el = document.getElementById('pesanSalah');
+                el.classList.remove('hidden');
+                setTimeout(()=>el.classList.add('hidden'), 3000);
+            }
+        };
+    </script>
+</body>
+</html>
