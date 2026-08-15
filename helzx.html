@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RANZXITER</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e9edf5, #ffffff, #dfe5ee);
+      color: #202020;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      min-height: 100vh;
+      padding: 45px 22px;
+      text-align: center;
+    }
+
+    /* FOTO PROFIL */
+    .profile {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: linear-gradient(135deg, #111, #555);
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+
+      border: 4px solid white;
+      box-shadow: 0 5px 20px #0004;
+    }
+
+    h1 {
+      margin: 15px 0 8px;
+      font-size: 28px;
+    }
+
+    .description {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    /* TOMBOL */
+    .button {
+      width: 100%;
+      min-height: 105px;
+
+      margin-bottom: 22px;
+      padding: 20px;
+
+      border: 3px solid #111;
+      border-radius: 5px;
+
+      background: white;
+      color: #20202d;
+
+      text-decoration: none;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 21px;
+
+      box-shadow: 0 6px 0 #111;
+
+      transition: 0.15s;
+    }
+
+    .button:active {
+      transform: translateY(5px);
+      box-shadow: 0 1px 0 #111;
+    }
+
+    /* ICON */
+    .icon {
+      width: 55px;
+      height: 55px;
+
+      border-radius: 14px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-right: 18px;
+
+      font-size: 18px;
+      font-weight: bold;
+
+      color: white;
+    }
+
+    .whatsapp {
+      background: #25D366;
+    }
+
+    .telegram {
+      background: #229ED9;
+    }
+
+    @media (max-width: 380px) {
+      .button {
+        font-size: 19px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- FOTO PROFIL -->
+    <div class="profile">
+      RX
+    </div>
+
+    <!-- NAMA -->
+    <h1>RANZXITER</h1>
+
+    <!-- DESKRIPSI -->
+    <p class="description">
+      Saluran WA / Telegram di bawah
+    </p>
+
+
+    <!-- WHATSAPP -->
+    <a
+      class="button"
+      href="https://whatsapp.com/channel/0029Vb7rT4vL2AU2B1plRy0Q"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <span class="icon whatsapp">
+        WA
+      </span>
+
+      <span>
+        Saluran WhatsApp
+      </span>
+
+    </a>
+
+
+    <!-- TELEGRAM -->
+    <a
+      class="button"
+      href="https://t.me/helzxiter"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <span class="icon telegram">
+        ✈
+      </span>
+
+      <span>
+        Saluran Telegram
+      </span>
+
+    </a>
+
+  </div>
+
+</body>
+</html>
